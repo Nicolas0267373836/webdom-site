@@ -60,7 +60,7 @@
   }
 
   *{box-sizing:border-box;}
-  html{-webkit-text-size-adjust:100%;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
   body{
     margin:0;
     background:var(--bg);
@@ -82,11 +82,16 @@
   :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+    .reveal{ opacity:1; transform:none; }
   }
 
   .container{ max-width:1120px; margin:0 auto; padding:0 24px; }
   section{ padding:88px 0; }
   @media (max-width:720px){ section{ padding:56px 0; } }
+
+  /* Transición de entrada al recorrer la página. */
+  .reveal{ opacity:0; transform:translateY(34px); transition:opacity .65s ease, transform .65s ease; transition-delay:var(--reveal-delay, 0ms); }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
@@ -297,10 +302,10 @@
       <a href="#hacemos">Qué hacemos</a>
       <a href="#gbp">¿Qué es GBP?</a>
       <a href="#planes">Planes</a>
-      <a href="#calculadora">Cotizar</a>
+      <a href="#planes">Cotizar</a>
       <a href="#contacto">Contacto</a>
     </div>
-    <a class="btn btn-accent nav-cta" href="#calculadora">Cotizar ahora</a>
+    <a class="btn btn-accent nav-cta" href="#planes">Cotizar ahora</a>
   </div>
 </nav>
 
@@ -311,12 +316,11 @@
       <h1>Diseñamos y<br>construimos la<br><em>web de tu negocio.</em></h1>
       <p class="lede">De principio a fin: diseño, secciones, fotos y botón de WhatsApp, lista en días — no en semanas. Y como parte del plan, también le damos seguimiento a tu ficha de Google con publicaciones y reseñas.</p>
       <div class="hero-actions">
-        <a class="btn btn-accent" href="#calculadora">Ver mi cotización</a>
+        <a class="btn btn-accent" href="#planes">Cotizar mi web</a>
         <a class="btn btn-ghost" href="#planes">Ver planes</a>
       </div>
       <div class="hero-stats">
         <div class="stat"><b>3–10 días</b><span>de entrega según el plan</span></div>
-        <div class="stat"><b>RD$4,500</b><span>para arrancar</span></div>
         <div class="stat"><b>SPM</b><span>hecho por gente de aquí</span></div>
       </div>
     </div>
@@ -460,13 +464,12 @@
     <div class="pricing-grid">
       <div class="price-card">
         <h3>Básico</h3>
-        <div class="price-line"><span class="amount">RD$4,500</span><span class="unit">pago único</span></div>
+        <div class="price-line"><span class="amount">RD$6,990</span><span class="unit">pago único</span></div>
         <div class="price-sub">+ RD$500/mes</div>
         <ul class="price-feats">
           <li>Web de 1 página con lo esencial</li>
           <li>Dominio y hosting el primer año</li>
           <li>Configuración inicial de Google Business Profile</li>
-          <li>Soporte cada 2 meses</li>
         </ul>
         <a class="btn btn-ghost" href="#calculadora">Cotizar Básico</a>
       </div>
@@ -492,6 +495,7 @@
           <li>4 publicaciones de Google al mes</li>
           <li>Gestión de reseñas incluida</li>
           <li>Soporte ilimitado + reporte mensual</li>
+          <li>Prioridad para cambios y mejoras</li>
         </ul>
         <a class="btn btn-ghost" href="#calculadora">Cotizar Premium</a>
       </div>
@@ -504,7 +508,7 @@
     <div class="section-head">
       <span class="eyebrow">Cotizador</span>
       <h2>Arma tu plan y mira el precio al momento.</h2>
-      <p>Elige tu plan y los extras que quieras — el total se actualiza solo.</p>
+      <p>Elige tu plan y los extras que quieras — el total se actualiza solo. Las secciones extra se cotizan según su alcance.</p>
     </div>
 
     <div class="calc">
@@ -513,7 +517,7 @@
         <div class="plan-picker" id="planPicker">
           <div class="plan-opt">
             <input type="radio" name="plan" id="plan-basico" value="basico">
-            <label for="plan-basico"><b>Básico</b><span>RD$4,500</span></label>
+            <label for="plan-basico"><b>Básico</b><span>RD$6,990</span></label>
           </div>
           <div class="plan-opt">
             <input type="radio" name="plan" id="plan-estandar" value="estandar" checked>
@@ -545,7 +549,7 @@
         </div>
 
         <div class="extra-row">
-          <div class="extra-copy"><b>Secciones extra en la web</b><span>RD$700 c/u, pago único</span></div>
+          <div class="extra-copy"><b>Secciones extra en la web</b><span>Se cotizan según lo que necesite tu negocio</span></div>
           <div class="stepper">
             <button type="button" data-step="secciones" data-dir="-1" aria-label="Restar sección">−</button>
             <output id="seccionesVal">0</output>
@@ -614,11 +618,11 @@
 <script>
 (function(){
   var PLANS = {
-    basico:   { label:'Básico',   setup:4500,  mensual:500,  reseñasIncluidas:false },
+    basico:   { label:'Básico',   setup:6990,  mensual:500,  reseñasIncluidas:false },
     estandar: { label:'Estándar', setup:8500,  mensual:1000, reseñasIncluidas:false },
     premium:  { label:'Premium',  setup:15000, mensual:1800, reseñasIncluidas:true  }
   };
-  var PUB_EXTRA = 300, RESENAS_PAQUETE = 500, SECCION_EXTRA = 700, FOTO_EXTRA = 250;
+  var PUB_EXTRA = 300, RESENAS_PAQUETE = 500, FOTO_EXTRA = 250;
 
   var state = { plan:'estandar', pubs:0, resenas:false, secciones:0, fotos:0 };
 
@@ -631,7 +635,7 @@
     var resenasActive = plan.reseñasIncluidas || state.resenas;
     var resenasCost = plan.reseñasIncluidas ? 0 : (state.resenas ? RESENAS_PAQUETE : 0);
 
-    var setupTotal = plan.setup + state.secciones*SECCION_EXTRA + state.fotos*FOTO_EXTRA;
+    var setupTotal = plan.setup + state.fotos*FOTO_EXTRA;
     var mensualTotal = plan.mensual + state.pubs*PUB_EXTRA + resenasCost;
 
     var rows = [];
@@ -639,7 +643,7 @@
     if(state.pubs > 0) rows.push([state.pubs + ' publicación(es) extra/mes', fmt(state.pubs*PUB_EXTRA) + '/mes']);
     if(state.resenas && !plan.reseñasIncluidas) rows.push(['Paquete de reseñas', fmt(RESENAS_PAQUETE) + '/mes']);
     if(plan.reseñasIncluidas) rows.push(['Gestión de reseñas', 'Incluido']);
-    if(state.secciones > 0) rows.push([state.secciones + ' sección(es) extra', fmt(state.secciones*SECCION_EXTRA)]);
+    if(state.secciones > 0) rows.push([state.secciones + ' sección(es) extra', 'A cotizar']);
     if(state.fotos > 0) rows.push([state.fotos + ' cambio(s) de foto extra', fmt(state.fotos*FOTO_EXTRA)]);
 
     var list = document.getElementById('summaryList');
@@ -661,7 +665,8 @@
       (state.resenas && !plan.reseñasIncluidas ? ', paquete de reseñas' : '') +
       (state.secciones ? ', ' + state.secciones + ' sección(es) extra' : '') +
       (state.fotos ? ', ' + state.fotos + ' cambio(s) de foto extra' : '') +
-      '. Pago único aprox: ' + fmt(setupTotal) + '. Mensualidad aprox: ' + fmt(mensualTotal) + '/mes.';
+      '. Pago único aprox: ' + fmt(setupTotal) + '. Mensualidad aprox: ' + fmt(mensualTotal) + '/mes.' +
+      (state.secciones ? ' El precio de las secciones extra se cotiza aparte.' : '');
     document.getElementById('waLink').href = 'https://wa.me/18299782833?text=' + encodeURIComponent(msg);
   }
 
@@ -684,6 +689,27 @@
   });
 
   render();
+
+  // Revela cada sección mientras entra en pantalla al hacer scroll.
+  var revealSections = document.querySelectorAll('section');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  revealSections.forEach(function(section, index){
+    section.classList.add('reveal');
+    section.style.setProperty('--reveal-delay', (index % 2) * 70 + 'ms');
+  });
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    revealSections.forEach(function(section){ section.classList.add('is-visible'); });
+  } else {
+    var revealObserver = new IntersectionObserver(function(entries, observer){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12 });
+    revealSections.forEach(function(section){ revealObserver.observe(section); });
+  }
 
   // --- Contacto dinámico (un solo canal: WhatsApp) ---
   var WHATSAPP_NUMBER = '18299782833';

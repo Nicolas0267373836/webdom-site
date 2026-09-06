@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WebDom - Diseño y desarrollo de páginas web para negocios de San Pedro de Macorís, República Dominicana. Incluye configuración de Google Business Profile.">
+<title>WebDom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    /* light palette (bare :root = light, per artifact theming contract) */
+    --bg: #F1F5F4;
+    --bg-soft: #E7EFED;
+    --surface: #FFFFFF;
+    --surface-2: #FAFCFB;
+    --text: #0F201E;
+    --text-muted: #506863;
+    --border: #D7E2DF;
+    --accent: #E85A3B;
+    --accent-contrast: #FFFFFF;
+    --accent-soft: #FDE7DF;
+    --accent2: #0E9B78;
+    --accent2-soft: #DFF3EC;
+    --shadow: 220 30% 20%;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #0A1615;
+      --bg-soft: #0E1D1B;
+      --surface: #112220;
+      --surface-2: #142725;
+      --text: #E9F3F0;
+      --text-muted: #8CA6A0;
+      --border: #1E3532;
+      --accent: #FF7A54;
+      --accent-contrast: #0A1615;
+      --accent-soft: #2A1B15;
+      --accent2: #34D9A8;
+      --accent2-soft: #103227;
+      --shadow: 220 60% 2%;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #0A1615;
+    --bg-soft: #0E1D1B;
+    --surface: #112220;
+    --surface-2: #142725;
+    --text: #E9F3F0;
+    --text-muted: #8CA6A0;
+    --border: #1E3532;
+    --accent: #FF7A54;
+    --accent-contrast: #0A1615;
+    --accent-soft: #2A1B15;
+    --accent2: #34D9A8;
+    --accent2-soft: #103227;
+    --shadow: 220 60% 2%;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Manrope',system-ui,-apple-system,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Unbounded',system-ui,sans-serif;
+    text-wrap:balance;
+    line-height:1.15;
+    margin:0;
+  }
+  .mono{ font-family:'JetBrains Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  ::selection{ background:var(--accent); color:var(--accent-contrast); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  .container{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  section{ padding:88px 0; }
+  @media (max-width:720px){ section{ padding:56px 0; } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent2);
+    background:var(--accent2-soft);
+    border:1px solid var(--accent2);
+    padding:6px 12px; border-radius:100px;
+  }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent2); flex:none; }
+
+  .section-head{ max-width:640px; margin:0 0 44px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,40px); margin-top:14px; }
+  .section-head p{ color:var(--text-muted); font-size:17px; margin-top:12px; }
+
+  /* ============ NAV ============ */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto; }
+  .logo{ font-family:'Unbounded'; font-weight:800; font-size:19px; display:flex; align-items:center; gap:8px; }
+  .logo-dot{ width:9px; height:9px; border-radius:2px; background:var(--accent); transform:rotate(45deg); flex:none; }
+  .nav-links{ display:flex; gap:28px; font-size:14.5px; font-weight:600; }
+  .nav-links a{ text-decoration:none; color:var(--text-muted); transition:color .15s; }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{ display:inline-flex; }
+  @media (max-width:760px){ .nav-links{ display:none; } }
+
+  .btn{
+    font-family:'Manrope'; font-weight:700; font-size:14.5px;
+    padding:12px 22px; border-radius:10px; border:1px solid transparent;
+    cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-accent{ background:var(--accent); color:var(--accent-contrast); }
+  .btn-accent:hover{ background:color-mix(in srgb, var(--accent) 88%, black); }
+  .btn-ghost{ background:transparent; color:var(--text); border-color:var(--border); }
+  .btn-ghost:hover{ border-color:var(--accent2); color:var(--accent2); }
+
+  /* ============ HERO ============ */
+  .hero{ padding:72px 0 64px; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero h1{ font-size:clamp(34px,5vw,56px); margin-top:18px; letter-spacing:-0.01em; }
+  .hero h1 em{ font-style:normal; color:var(--accent); }
+  .hero p.lede{ font-size:18px; color:var(--text-muted); max-width:520px; margin-top:18px; }
+  .hero-actions{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .hero-stats{ display:flex; gap:28px; margin-top:44px; flex-wrap:wrap; }
+  .stat b{ display:block; font-family:'JetBrains Mono'; font-size:22px; color:var(--accent2); }
+  .stat span{ font-size:13px; color:var(--text-muted); }
+
+  .hero-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:20px;
+    padding:26px; box-shadow:0 20px 50px -25px hsl(var(--shadow) / 0.6);
+  }
+  .hero-card-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .hero-card-top .dots{ display:flex; gap:6px; }
+  .hero-card-top .dots span{ width:8px; height:8px; border-radius:50%; background:var(--border); }
+  .hero-card-label{ font-family:'JetBrains Mono'; font-size:12px; color:var(--text-muted); }
+  .gbp-row{ display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border); }
+  .gbp-row:first-of-type{ border-top:none; }
+  .gbp-check{ width:20px; height:20px; border-radius:6px; background:var(--accent2-soft); color:var(--accent2); display:flex; align-items:center; justify-content:center; font-size:13px; flex:none; }
+  .gbp-row span{ font-size:14.5px; }
+  .gbp-row small{ display:block; color:var(--text-muted); font-size:12.5px; }
+
+  /* ============ FEATURES ============ */
+  .feature-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:900px){ .feature-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .feature-grid{ grid-template-columns:1fr; } }
+  .feature-grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:760px){ .feature-grid-3{ grid-template-columns:1fr; } }
+  .feature{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px;
+  }
+  .feature .icon{
+    width:40px; height:40px; border-radius:10px; background:var(--accent-soft); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:16px;
+  }
+  .feature h3{ font-size:16.5px; font-family:'Manrope'; font-weight:700; }
+  .feature p{ font-size:14.5px; color:var(--text-muted); margin-top:8px; }
+
+  /* ============ STEPS ============ */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--border); border-radius:18px; overflow:hidden; }
+  @media (max-width:760px){ .steps{ grid-template-columns:1fr; } }
+  .step{ padding:32px; border-left:1px solid var(--border); position:relative; }
+  .step:first-child{ border-left:none; }
+  @media (max-width:760px){ .step{ border-left:none; border-top:1px solid var(--border); } .step:first-child{ border-top:none; } }
+  .step .num{ font-family:'JetBrains Mono'; font-size:13px; color:var(--accent2); }
+  .step h3{ font-size:18px; margin-top:10px; font-family:'Manrope'; font-weight:700; }
+  .step p{ color:var(--text-muted); font-size:14.5px; margin-top:8px; }
+
+  /* ============ TEAM ============ */
+  .team-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:720px){ .team-grid{ grid-template-columns:1fr; } }
+  .team-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:28px; }
+  .avatar{
+    width:52px; height:52px; border-radius:12px; background:var(--bg-soft); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-family:'Unbounded'; font-weight:700; color:var(--accent2); margin-bottom:16px;
+  }
+  .team-card h3{ font-size:18px; font-family:'Manrope'; font-weight:800; }
+  .team-role{ font-family:'JetBrains Mono'; font-size:12.5px; color:var(--accent2); margin-top:4px; display:block; }
+  .team-card p{ color:var(--text-muted); font-size:14.5px; margin-top:12px; }
+
+  /* ============ PRICING ============ */
+  .pricing-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch; }
+  @media (max-width:900px){ .pricing-grid{ grid-template-columns:1fr; } }
+  .price-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:30px;
+    display:flex; flex-direction:column; position:relative;
+  }
+  .price-card.featured{ border-color:var(--accent); box-shadow:0 24px 48px -30px hsl(var(--shadow) / 0.7); }
+  .badge{
+    position:absolute; top:-13px; left:30px; background:var(--accent); color:var(--accent-contrast);
+    font-family:'JetBrains Mono'; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase;
+    padding:5px 12px; border-radius:100px;
+  }
+  .price-card h3{ font-family:'Unbounded'; font-size:20px; }
+  .price-line{ margin-top:18px; display:flex; align-items:baseline; gap:6px; }
+  .price-line .amount{ font-family:'JetBrains Mono'; font-size:30px; font-weight:600; }
+  .price-line .unit{ color:var(--text-muted); font-size:13px; }
+  .price-sub{ color:var(--text-muted); font-size:13.5px; margin-top:2px; }
+  .price-feats{ list-style:none; padding:0; margin:24px 0 28px; display:flex; flex-direction:column; gap:11px; flex:1; }
+  .price-feats li{ display:flex; gap:10px; font-size:14px; align-items:flex-start; }
+  .price-feats li::before{ content:'✓'; color:var(--accent2); font-weight:700; flex:none; }
+
+  /* ============ CALCULATOR ============ */
+  .calc{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:0;
+    background:var(--surface); border:1px solid var(--border); border-radius:22px; overflow:hidden;
+  }
+  @media (max-width:860px){ .calc{ grid-template-columns:1fr; } }
+  .calc-controls{ padding:36px; }
+  .calc-summary{ padding:36px; background:var(--bg-soft); border-left:1px solid var(--border); display:flex; flex-direction:column; }
+  @media (max-width:860px){ .calc-summary{ border-left:none; border-top:1px solid var(--border); } }
+
+  .field-label{ font-family:'JetBrains Mono'; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; display:block; }
+
+  .plan-picker{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:32px; }
+  @media (max-width:520px){ .plan-picker{ grid-template-columns:1fr; } }
+  .plan-opt{ position:relative; }
+  .plan-opt input{ position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+  .plan-opt label{
+    display:block; border:1.5px solid var(--border); border-radius:12px; padding:14px 12px; cursor:pointer;
+    text-align:center; transition:border-color .15s, background .15s;
+  }
+  .plan-opt label b{ display:block; font-family:'Manrope'; font-size:14.5px; }
+  .plan-opt label span{ display:block; font-family:'JetBrains Mono'; font-size:12px; color:var(--text-muted); margin-top:4px; }
+  .plan-opt input:checked + label{ border-color:var(--accent); background:var(--accent-soft); }
+  .plan-opt input:focus-visible + label{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .extra-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0; border-top:1px solid var(--border); }
+  .extra-row:first-of-type{ border-top:none; }
+  .extra-copy b{ font-size:14.5px; display:block; }
+  .extra-copy span{ font-size:12.5px; color:var(--text-muted); }
+  .stepper{ display:flex; align-items:center; gap:10px; flex:none; }
+  .stepper button{
+    width:28px; height:28px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2);
+    color:var(--text); font-size:16px; cursor:pointer; line-height:1; display:flex; align-items:center; justify-content:center;
+  }
+  .stepper button:hover{ border-color:var(--accent2); color:var(--accent2); }
+  .stepper output{ font-family:'JetBrains Mono'; min-width:16px; text-align:center; font-size:14.5px; }
+
+  .switch{ position:relative; width:42px; height:24px; flex:none; }
+  .switch input{ position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+  .switch .track{ position:absolute; inset:0; background:var(--border); border-radius:100px; transition:background .15s; }
+  .switch .thumb{ position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:var(--surface); transition:transform .15s; box-shadow:0 1px 3px hsl(var(--shadow)/0.4); }
+  .switch input:checked + .track{ background:var(--accent2); }
+  .switch input:checked + .track + .thumb{ transform:translateX(18px); }
+  .switch input:disabled + .track{ opacity:.5; }
+
+  .summary-title{ font-family:'Unbounded'; font-size:17px; }
+  .summary-list{ list-style:none; padding:0; margin:20px 0; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .summary-list li{ display:flex; justify-content:space-between; font-size:13.5px; }
+  .summary-list li span:first-child{ color:var(--text-muted); }
+  .summary-list li span:last-child{ font-family:'JetBrains Mono'; }
+  .summary-totals{ border-top:1px dashed var(--border); padding-top:18px; display:flex; flex-direction:column; gap:10px; }
+  .total-row{ display:flex; justify-content:space-between; align-items:baseline; }
+  .total-row .label{ font-size:13.5px; color:var(--text-muted); }
+  .total-row .value{ font-family:'JetBrains Mono'; font-size:22px; font-weight:600; color:var(--accent2); }
+  .total-row.setup .value{ color:var(--text); }
+
+  /* ============ CONTACT ============ */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:30px; }
+  .contact-item{ display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--border); }
+  .contact-item:first-child{ border-top:none; }
+  .contact-item .icon{ width:36px; height:36px; border-radius:9px; background:var(--accent2-soft); color:var(--accent2); display:flex; align-items:center; justify-content:center; flex:none; font-size:16px; }
+  .contact-item b{ display:block; font-size:14.5px; }
+  .contact-item span{ font-size:13.5px; color:var(--text-muted); }
+  .contact-item a{ text-decoration:none; }
+
+  footer{ border-top:1px solid var(--border); padding:32px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-inner p{ font-size:13px; color:var(--text-muted); margin:0; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-dot"></span>WebDom</div>
+    <div class="nav-links">
+      <a href="#hacemos">Qué hacemos</a>
+      <a href="#gbp">¿Qué es GBP?</a>
+      <a href="#planes">Planes</a>
+      <a href="#calculadora">Cotizar</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="btn btn-accent nav-cta" href="#calculadora">Cotizar ahora</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Estudio web · San Pedro de Macorís</span>
+      <h1>Diseñamos y<br>construimos la<br><em>web de tu negocio.</em></h1>
+      <p class="lede">De principio a fin: diseño, secciones, fotos y botón de WhatsApp, lista en días — no en semanas. Y como parte del plan, también le damos seguimiento a tu ficha de Google con publicaciones y reseñas.</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#calculadora">Ver mi cotización</a>
+        <a class="btn btn-ghost" href="#planes">Ver planes</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>3–10 días</b><span>de entrega según el plan</span></div>
+        <div class="stat"><b>RD$4,500</b><span>para arrancar</span></div>
+        <div class="stat"><b>SPM</b><span>hecho por gente de aquí</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-top">
+        <span class="hero-card-label">tu-negocio/index.html</span>
+        <div class="dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="gbp-row">
+        <div class="gbp-check">✓</div>
+        <div><span>Diseño a tu medida</span><small>Colores, logo y fotos de tu negocio real</small></div>
+      </div>
+      <div class="gbp-row">
+        <div class="gbp-check">✓</div>
+        <div><span>Botón de WhatsApp directo</span><small>El cliente te escribe sin pasos de más</small></div>
+      </div>
+      <div class="gbp-row">
+        <div class="gbp-check">✓</div>
+        <div><span>Dominio y hosting incluidos</span><small>El primer año va dentro del plan</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="hacemos">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Qué hacemos</span>
+      <h2>Construimos tu página web, de principio a fin.</h2>
+      <p>Una web rápida y profesional que representa tu negocio como se merece — lista en días, fácil de mantener y pensada para que tus clientes te encuentren y te escriban.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="icon">◧</div>
+        <h3>Diseño a tu medida</h3>
+        <p>Colores, logo y fotos de tu negocio — no una plantilla genérica con tu nombre pegado.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">▤</div>
+        <h3>Las secciones que necesitas</h3>
+        <p>Servicios, galería, horario y ubicación — solo lo que tu negocio realmente usa.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">✆</div>
+        <h3>Botón de WhatsApp directo</h3>
+        <p>El cliente te escribe con un toque, sin formularios ni pasos de más.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">◎</div>
+        <h3>Dominio y hosting incluidos</h3>
+        <p>El primer año va dentro del plan — no llega ninguna factura sorpresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gbp" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-head" style="margin:0 auto 32px;text-align:center">
+      <span class="eyebrow" style="margin:0 auto">Extra incluido</span>
+      <h2 style="margin-top:14px;font-size:clamp(24px,3vw,32px)">Y de paso, cuidamos tu ficha de Google.</h2>
+      <p style="color:var(--text-muted);margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto">Es la ficha gratuita que aparece en Maps y en el buscador cuando alguien busca lo que vendes. No es lo principal que hacemos, pero como parte de tu plan le damos seguimiento — publicaciones y reseñas — para que no se quede abandonada.</p>
+    </div>
+    <div class="feature-grid-3">
+      <div class="feature">
+        <div class="icon">◎</div>
+        <h3>Configuración inicial</h3>
+        <p>Reclamamos o creamos tu ficha y la dejamos completa desde el primer día.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">✎</div>
+        <h3>Publicaciones mensuales</h3>
+        <p>Contenido listo para publicar, según cuántas incluya tu plan.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">★</div>
+        <h3>Seguimiento de reseñas</h3>
+        <p>Te ayudamos a responderlas y a pedir más, con el paquete de reseñas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Tres pasos, sin vueltas.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Visita y diagnóstico</h3>
+        <p>Te mostramos cómo se ve tu negocio hoy en Google, comparado con la competencia.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Construcción y entrega</h3>
+        <p>Armamos tu web y configuramos tu ficha de Google en 3 a 10 días, según el plan.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Mantenimiento mensual</h3>
+        <p>Seguimos publicando y cuidando tu presencia, para que no se quede abandonada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>El equipo detrás de tu página web.</h2>
+      <p>Trato directo con quienes la construyen y le dan seguimiento, de principio a fin — sin intermediarios ni departamentos de por medio.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">NI</div>
+        <h3>Nicolás Abud</h3>
+        <span class="team-role">DESARROLLO &amp; PRODUCTO</span>
+        <p>Construye cada web y deja configurada la ficha de Google Business Profile de principio a fin.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">NE</div>
+        <h3>Neftalí Álvarez</h3>
+        <span class="team-role">VENTAS &amp; RELACIÓN CON CLIENTES</span>
+        <p>Visita cada negocio, arma el diagnóstico y da seguimiento después de la entrega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planes" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Planes</span>
+      <h2>Precio claro, sin cotización eterna.</h2>
+      <p>Un pago único para construir tu web y configurar tu ficha, más una mensualidad baja de mantenimiento.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Básico</h3>
+        <div class="price-line"><span class="amount">RD$4,500</span><span class="unit">pago único</span></div>
+        <div class="price-sub">+ RD$500/mes</div>
+        <ul class="price-feats">
+          <li>Web de 1 página con lo esencial</li>
+          <li>Dominio y hosting el primer año</li>
+          <li>Configuración inicial de Google Business Profile</li>
+          <li>Soporte cada 2 meses</li>
+        </ul>
+        <a class="btn btn-ghost" href="#calculadora">Cotizar Básico</a>
+      </div>
+      <div class="price-card featured">
+        <span class="badge">Más elegido</span>
+        <h3>Estándar</h3>
+        <div class="price-line"><span class="amount">RD$8,500</span><span class="unit">pago único</span></div>
+        <div class="price-sub">+ RD$1,000/mes</div>
+        <ul class="price-feats">
+          <li>3–5 secciones, galería y reseñas incrustadas</li>
+          <li>Dominio y hosting el primer año</li>
+          <li>2 publicaciones de Google al mes</li>
+          <li>Soporte mensual</li>
+        </ul>
+        <a class="btn btn-accent" href="#calculadora">Cotizar Estándar</a>
+      </div>
+      <div class="price-card">
+        <h3>Premium</h3>
+        <div class="price-line"><span class="amount">RD$15,000</span><span class="unit">pago único</span></div>
+        <div class="price-sub">+ RD$1,800/mes</div>
+        <ul class="price-feats">
+          <li>Diseño más cuidado y personalizado</li>
+          <li>4 publicaciones de Google al mes</li>
+          <li>Gestión de reseñas incluida</li>
+          <li>Soporte ilimitado + reporte mensual</li>
+        </ul>
+        <a class="btn btn-ghost" href="#calculadora">Cotizar Premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calculadora">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Cotizador</span>
+      <h2>Arma tu plan y mira el precio al momento.</h2>
+      <p>Elige tu plan y los extras que quieras — el total se actualiza solo.</p>
+    </div>
+
+    <div class="calc">
+      <div class="calc-controls">
+        <span class="field-label">1. Elige tu plan</span>
+        <div class="plan-picker" id="planPicker">
+          <div class="plan-opt">
+            <input type="radio" name="plan" id="plan-basico" value="basico">
+            <label for="plan-basico"><b>Básico</b><span>RD$4,500</span></label>
+          </div>
+          <div class="plan-opt">
+            <input type="radio" name="plan" id="plan-estandar" value="estandar" checked>
+            <label for="plan-estandar"><b>Estándar</b><span>RD$8,500</span></label>
+          </div>
+          <div class="plan-opt">
+            <input type="radio" name="plan" id="plan-premium" value="premium">
+            <label for="plan-premium"><b>Premium</b><span>RD$15,000</span></label>
+          </div>
+        </div>
+
+        <span class="field-label">2. Extras (opcional)</span>
+
+        <div class="extra-row">
+          <div class="extra-copy"><b>Publicaciones extra en GBP</b><span>RD$300 c/u al mes, fuera de las incluidas</span></div>
+          <div class="stepper">
+            <button type="button" data-step="pubs" data-dir="-1" aria-label="Restar publicación">−</button>
+            <output id="pubsVal">0</output>
+            <button type="button" data-step="pubs" data-dir="1" aria-label="Sumar publicación">+</button>
+          </div>
+        </div>
+
+        <div class="extra-row">
+          <div class="extra-copy"><b>Paquete de gestión de reseñas</b><span>RD$500/mes · ya incluido en Premium</span></div>
+          <label class="switch">
+            <input type="checkbox" id="resenas">
+            <span class="track"></span><span class="thumb"></span>
+          </label>
+        </div>
+
+        <div class="extra-row">
+          <div class="extra-copy"><b>Secciones extra en la web</b><span>RD$700 c/u, pago único</span></div>
+          <div class="stepper">
+            <button type="button" data-step="secciones" data-dir="-1" aria-label="Restar sección">−</button>
+            <output id="seccionesVal">0</output>
+            <button type="button" data-step="secciones" data-dir="1" aria-label="Sumar sección">+</button>
+          </div>
+        </div>
+
+        <div class="extra-row">
+          <div class="extra-copy"><b>Cambios de fotos/banner extra</b><span>RD$250 c/u, pago único</span></div>
+          <div class="stepper">
+            <button type="button" data-step="fotos" data-dir="-1" aria-label="Restar cambio">−</button>
+            <output id="fotosVal">0</output>
+            <button type="button" data-step="fotos" data-dir="1" aria-label="Sumar cambio">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-summary">
+        <div class="summary-title">Tu cotización</div>
+        <ul class="summary-list" id="summaryList"></ul>
+        <div class="summary-totals">
+          <div class="total-row setup">
+            <span class="label">Pago único</span>
+            <span class="value mono" id="totalSetup">RD$0</span>
+          </div>
+          <div class="total-row">
+            <span class="label">Mensualidad</span>
+            <span class="value mono" id="totalMensual">RD$0</span>
+          </div>
+        </div>
+        <a class="btn btn-accent" id="waLink" href="#" style="margin-top:22px;justify-content:center" target="_blank" rel="noopener">Solicitar esta cotización por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-head" style="margin:0 auto 40px;text-align:center">
+      <span class="eyebrow" style="margin:0 auto">Contacto</span>
+      <h2 style="margin-top:14px;font-size:clamp(26px,3.6vw,38px)">Cuéntanos de tu negocio.</h2>
+      <p style="color:var(--text-muted);margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto">Escribe una línea y te respondemos directo por WhatsApp — sin formularios largos.</p>
+    </div>
+
+    <div class="contact-card" style="max-width:600px;margin:0 auto">
+      <label class="field-label" for="msgInput">Tu mensaje</label>
+      <textarea id="msgInput" rows="3" placeholder="Ej: Tengo una barbería en el sector X y quiero saber cómo se vería mi negocio en Google." style="width:100%;resize:vertical;font-family:'Manrope',sans-serif;font-size:15px;padding:14px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text)"></textarea>
+      <a class="btn btn-accent" id="contactWaLink" href="#" target="_blank" rel="noopener" style="margin-top:16px;width:100%;justify-content:center">Enviar por WhatsApp</a>
+
+      <div class="contact-item" style="margin-top:22px;align-items:center">
+        <div class="icon">✆</div>
+        <div><b>O llama o escribe directo</b><span class="mono" id="phoneDisplay" style="font-size:15px">+1 (829) 978-2833</span></div>
+        <button type="button" id="copyPhone" class="btn btn-ghost" style="margin-left:auto;padding:8px 14px;font-size:13px">Copiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="logo" style="font-size:15px"><span class="logo-dot" style="width:7px;height:7px"></span>WebDom</div>
+    <p>© 2026 WebDom — San Pedro de Macorís, RD.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PLANS = {
+    basico:   { label:'Básico',   setup:4500,  mensual:500,  reseñasIncluidas:false },
+    estandar: { label:'Estándar', setup:8500,  mensual:1000, reseñasIncluidas:false },
+    premium:  { label:'Premium',  setup:15000, mensual:1800, reseñasIncluidas:true  }
+  };
+  var PUB_EXTRA = 300, RESENAS_PAQUETE = 500, SECCION_EXTRA = 700, FOTO_EXTRA = 250;
+
+  var state = { plan:'estandar', pubs:0, resenas:false, secciones:0, fotos:0 };
+
+  function fmt(n){ return 'RD$' + Math.round(n).toLocaleString('es-DO'); }
+
+  function currentPlan(){ return PLANS[state.plan]; }
+
+  function render(){
+    var plan = currentPlan();
+    var resenasActive = plan.reseñasIncluidas || state.resenas;
+    var resenasCost = plan.reseñasIncluidas ? 0 : (state.resenas ? RESENAS_PAQUETE : 0);
+
+    var setupTotal = plan.setup + state.secciones*SECCION_EXTRA + state.fotos*FOTO_EXTRA;
+    var mensualTotal = plan.mensual + state.pubs*PUB_EXTRA + resenasCost;
+
+    var rows = [];
+    rows.push(['Plan ' + plan.label, fmt(plan.setup) + ' + ' + fmt(plan.mensual) + '/mes']);
+    if(state.pubs > 0) rows.push([state.pubs + ' publicación(es) extra/mes', fmt(state.pubs*PUB_EXTRA) + '/mes']);
+    if(state.resenas && !plan.reseñasIncluidas) rows.push(['Paquete de reseñas', fmt(RESENAS_PAQUETE) + '/mes']);
+    if(plan.reseñasIncluidas) rows.push(['Gestión de reseñas', 'Incluido']);
+    if(state.secciones > 0) rows.push([state.secciones + ' sección(es) extra', fmt(state.secciones*SECCION_EXTRA)]);
+    if(state.fotos > 0) rows.push([state.fotos + ' cambio(s) de foto extra', fmt(state.fotos*FOTO_EXTRA)]);
+
+    var list = document.getElementById('summaryList');
+    list.innerHTML = rows.map(function(r){ return '<li><span>'+r[0]+'</span><span>'+r[1]+'</span></li>'; }).join('');
+
+    document.getElementById('totalSetup').textContent = fmt(setupTotal);
+    document.getElementById('totalMensual').textContent = fmt(mensualTotal) + '/mes';
+
+    document.getElementById('pubsVal').textContent = state.pubs;
+    document.getElementById('seccionesVal').textContent = state.secciones;
+    document.getElementById('fotosVal').textContent = state.fotos;
+
+    var resenasInput = document.getElementById('resenas');
+    resenasInput.disabled = plan.reseñasIncluidas;
+    resenasInput.checked = resenasActive;
+
+    var msg = 'Hola WebDom, quiero cotizar el plan ' + plan.label +
+      (state.pubs ? ' con ' + state.pubs + ' publicación(es) extra/mes' : '') +
+      (state.resenas && !plan.reseñasIncluidas ? ', paquete de reseñas' : '') +
+      (state.secciones ? ', ' + state.secciones + ' sección(es) extra' : '') +
+      (state.fotos ? ', ' + state.fotos + ' cambio(s) de foto extra' : '') +
+      '. Pago único aprox: ' + fmt(setupTotal) + '. Mensualidad aprox: ' + fmt(mensualTotal) + '/mes.';
+    document.getElementById('waLink').href = 'https://wa.me/18299782833?text=' + encodeURIComponent(msg);
+  }
+
+  document.getElementById('planPicker').addEventListener('change', function(e){
+    if(e.target.name === 'plan'){ state.plan = e.target.value; render(); }
+  });
+
+  document.querySelectorAll('.stepper button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.getAttribute('data-step');
+      var dir = parseInt(btn.getAttribute('data-dir'), 10);
+      state[key] = Math.max(0, Math.min(20, state[key] + dir));
+      render();
+    });
+  });
+
+  document.getElementById('resenas').addEventListener('change', function(e){
+    state.resenas = e.target.checked;
+    render();
+  });
+
+  render();
+
+  // --- Contacto dinámico (un solo canal: WhatsApp) ---
+  var WHATSAPP_NUMBER = '18299782833';
+
+  function updateContactLink(){
+    var raw = document.getElementById('msgInput').value.trim();
+    var msg = raw || 'Hola WebDom, quiero información sobre sus planes.';
+    document.getElementById('contactWaLink').href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+  }
+  document.getElementById('msgInput').addEventListener('input', updateContactLink);
+  updateContactLink();
+
+  function copyPhone(){
+    var text = '+1 (829) 978-2833';
+    function fallbackCopy(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+    var btn = document.getElementById('copyPhone');
+    var original = btn.textContent;
+    btn.textContent = 'Copiado ✓';
+    setTimeout(function(){ btn.textContent = original; }, 1800);
+  }
+  document.getElementById('copyPhone').addEventListener('click', copyPhone);
+})();
+</script>
+</body>
+</html>

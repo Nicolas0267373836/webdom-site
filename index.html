@@ -253,6 +253,10 @@
   .comparison-table tbody tr:hover .webdom{ background:color-mix(in srgb, var(--accent2-soft) 76%, var(--accent2)); }
   .comparison-good{ color:var(--accent2); font-weight:800; }
   .comparison-muted{ color:var(--text-muted); }
+  @media (hover:hover){
+    .feature,.team-card,.price-card,.comparison-metric{ transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    .feature:hover,.team-card:hover,.price-card:hover,.comparison-metric:hover{ transform:translateY(-4px); border-color:var(--accent2); }
+  }
   @media (max-width:720px){
     .comparison-wrap{ overflow:visible; border:none; background:transparent; }
     .comparison-table,.comparison-table tbody,.comparison-table tr,.comparison-table th,.comparison-table td{ display:block; min-width:0; width:100%; }

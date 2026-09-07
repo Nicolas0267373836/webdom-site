@@ -232,7 +232,30 @@
     padding:5px 12px; border-radius:100px;
   }
   .price-card h3{ font-family:'Unbounded'; font-size:20px; }
-  .price-line{ margin-top:18px; display:flex; align-items:baseline; gap:6px; }
+  .price-line{ margin-top:18px; display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .price-was{
+    display:block;
+    font-family:'JetBrains Mono';
+    font-size:15px;
+    color:var(--text-muted);
+    text-decoration:line-through;
+    text-decoration-color:var(--text-muted);
+    margin-bottom:2px;
+  }
+  .discount-badge{
+    display:inline-flex;
+    align-items:center;
+    font-family:'JetBrains Mono';
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--accent2);
+    background:var(--accent2-soft);
+    border:1px solid var(--accent2);
+    padding:3px 9px;
+    border-radius:100px;
+    margin-top:4px;
+    white-space:nowrap;
+  }
   .price-line .amount{ font-family:'JetBrains Mono'; font-size:30px; font-weight:600; }
   .price-line .unit{ color:var(--text-muted); font-size:13px; }
   .price-sub{ color:var(--text-muted); font-size:13.5px; margin-top:2px; }
@@ -407,7 +430,7 @@
       </div>
       <div class="gbp-row">
         <div class="gbp-check">✓</div>
-        <div><span>Dominio y hosting incluidos</span><small>El primer año va dentro del plan</small></div>
+        <div><span>Dominio y hosting incluidos</span><small>Se mantiene activo mientras tengas el servicio mensual</small></div>
       </div>
     </div>
   </div>
@@ -520,12 +543,12 @@
       <div class="feature">
         <div class="icon">✎</div>
         <h3>Publicaciones mensuales</h3>
-        <p>Contenido listo para publicar, según cuántas incluya tu plan.</p>
+        <p>1 publicación al mes incluida en el servicio; las adicionales se cotizan aparte.</p>
       </div>
       <div class="feature">
         <div class="icon">★</div>
         <h3>Seguimiento de reseñas</h3>
-        <p>Te ayudamos a responderlas y a pedir más, con el paquete de reseñas.</p>
+        <p>Incluido en el servicio mensual para todos los planes — te ayudamos a responder y a pedir más.</p>
       </div>
     </div>
   </div>
@@ -551,7 +574,7 @@
       <div class="step">
         <span class="num">03</span>
         <h3>Entrega y seguimiento</h3>
-        <p>Publicamos tu presencia digital y seguimos cuidándola según el plan que elegiste.</p>
+        <p>Publicamos tu presencia digital y seguimos cuidándola con el servicio mensual.</p>
       </div>
     </div>
   </div>
@@ -562,49 +585,59 @@
     <div class="section-head">
       <span class="eyebrow">Planes</span>
       <h2>Precio claro, sin cotización eterna.</h2>
-      <p>Un pago único para construir tu web y configurar tu ficha, más una mensualidad baja de mantenimiento.</p>
+      <p>Un pago único para construir tu web y configurar tu ficha, más un servicio mensual claro para mantener tu presencia activa.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card">
         <h3>Básico</h3>
-        <div class="price-line"><span class="amount">RD$4,500</span><span class="unit">pago único</span></div>
-        <div class="price-sub">+ RD$500/mes</div>
+        <div class="price-line">
+          <div>
+            <span class="price-was">RD$9,990</span>
+            <span class="amount">RD$6,990</span><span class="unit">pago único</span>
+          </div>
+          <span class="discount-badge">-30%</span>
+        </div>
+        <div class="price-sub">+ RD$750/mes de servicio</div>
         <ul class="price-feats">
           <li>Web de 1 página con lo esencial</li>
-          <li>Dominio y hosting el primer año</li>
           <li>Configuración inicial de Google Business Profile</li>
-          <li>Soporte cada 2 meses</li>
-          <li>Entrega en 3–5 días</li>
+          <li>Servicio mensual: dominio, reseñas, soporte, 1 publicación y 1 cambio incluidos</li>
         </ul>
         <a class="btn btn-ghost" href="#calculadora">Cotizar Básico</a>
       </div>
       <div class="price-card featured">
         <span class="badge">Más elegido</span>
         <h3>Estándar</h3>
-        <div class="price-line"><span class="amount">RD$8,500</span><span class="unit">pago único</span></div>
-        <div class="price-sub">+ RD$1,000/mes</div>
+        <div class="price-line">
+          <div>
+            <span class="price-was">RD$12,490</span>
+            <span class="amount">RD$8,490</span><span class="unit">pago único</span>
+          </div>
+          <span class="discount-badge">-32%</span>
+        </div>
+        <div class="price-sub">+ RD$750/mes de servicio</div>
         <ul class="price-feats">
           <li>3–5 secciones, galería y reseñas incrustadas</li>
-          <li>Dominio y hosting el primer año</li>
           <li>Configuración inicial de Google Business Profile</li>
-          <li>2 publicaciones de Google al mes</li>
-          <li>Soporte mensual</li>
-          <li>Entrega en 5–7 días</li>
+          <li>Servicio mensual: dominio, reseñas, soporte, 1 publicación y 1 cambio incluidos</li>
         </ul>
         <a class="btn btn-accent" href="#calculadora">Cotizar Estándar</a>
       </div>
       <div class="price-card">
         <h3>Premium</h3>
-        <div class="price-line"><span class="amount">RD$15,000</span><span class="unit">pago único</span></div>
-        <div class="price-sub">+ RD$1,800/mes</div>
+        <div class="price-line">
+          <div>
+            <span class="price-was">RD$21,990</span>
+            <span class="amount">RD$14,990</span><span class="unit">pago único</span>
+          </div>
+          <span class="discount-badge">-32%</span>
+        </div>
+        <div class="price-sub">+ RD$750/mes de servicio</div>
         <ul class="price-feats">
           <li>Diseño más cuidado y personalizado</li>
           <li>Configuración inicial de Google Business Profile</li>
-          <li>4 publicaciones de Google al mes</li>
-          <li>Gestión de reseñas incluida</li>
-          <li>Soporte ilimitado + reporte mensual</li>
+          <li>Servicio mensual: dominio, reseñas, soporte, 1 publicación y 1 cambio incluidos</li>
           <li>Prioridad para cambios y mejoras</li>
-          <li>Entrega en 7–10 días</li>
         </ul>
         <a class="btn btn-ghost" href="#calculadora">Cotizar Premium</a>
       </div>
@@ -618,7 +651,7 @@
       <span class="eyebrow">¿Por qué elegir WebDom?</span>
       <h2>Ni agencia cara, ni freelancer que desaparece.</h2>
     </div>
-    <p class="comparison-copy"><strong>Trabajamos contigo de forma directa.</strong> Una web bien construida, tu ficha de Google cuidada, y alguien que responde cuando lo necesitas. El plan Estándar incluye 3–5 secciones, galería, reseñas incrustadas, 2 publicaciones GBP al mes y soporte mensual.</p>
+    <p class="comparison-copy"><strong>Trabajamos contigo de forma directa.</strong> Una web bien construida, tu ficha de Google cuidada, y alguien que responde cuando lo necesitas. El plan Estándar incluye 3–5 secciones, galería y reseñas incrustadas; el servicio mensual incluye soporte, gestión de reseñas, 1 publicación y 1 cambio menor.</p>
     <p class="comparison-note">Comparación basada en el plan Estándar de WebDom; el alcance de cada agencia puede variar según su propuesta.</p>
     <div class="comparison-metrics" aria-label="Resumen de WebDom">
       <div class="comparison-metric"><b><span data-count-to="3">0</span> pasos</b><span>para poner en marcha tu web</span></div>
@@ -638,12 +671,12 @@
           <tr>
             <th scope="row">Precio</th>
             <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">RD$25,000–40,000</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">RD$8,500</span></td>
+            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">RD$8,490</span></td>
           </tr>
           <tr>
             <th scope="row">Mantenimiento incluido</th>
             <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">No (aparte)</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">Sí, incluido</span></td>
+            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">Servicio único de RD$750/mes</span></td>
           </tr>
           <tr>
             <th scope="row">Entrega</th>
@@ -733,35 +766,27 @@
         <div class="plan-picker" id="planPicker">
           <div class="plan-opt">
             <input type="radio" name="plan" id="plan-basico" value="basico">
-            <label for="plan-basico"><b>Básico</b><span>RD$4,500</span></label>
+            <label for="plan-basico"><b>Básico</b><span>RD$6,990</span></label>
           </div>
           <div class="plan-opt">
             <input type="radio" name="plan" id="plan-estandar" value="estandar" checked>
-            <label for="plan-estandar"><b>Estándar</b><span>RD$8,500</span></label>
+            <label for="plan-estandar"><b>Estándar</b><span>RD$8,490</span></label>
           </div>
           <div class="plan-opt">
             <input type="radio" name="plan" id="plan-premium" value="premium">
-            <label for="plan-premium"><b>Premium</b><span>RD$15,000</span></label>
+            <label for="plan-premium"><b>Premium</b><span>RD$14,990</span></label>
           </div>
         </div>
 
         <span class="field-label">2. Extras (opcional)</span>
 
         <div class="extra-row">
-          <div class="extra-copy"><b>Publicaciones extra en GBP</b><span>RD$300 c/u al mes, fuera de las incluidas</span></div>
+          <div class="extra-copy"><b>Publicaciones mensuales en GBP</b><span>1 incluida al mes; desde la 2da, RD$300 c/u</span></div>
           <div class="stepper">
             <button type="button" data-step="pubs" data-dir="-1" aria-label="Restar publicación">−</button>
             <output id="pubsVal">0</output>
             <button type="button" data-step="pubs" data-dir="1" aria-label="Sumar publicación">+</button>
           </div>
-        </div>
-
-        <div class="extra-row">
-          <div class="extra-copy"><b>Paquete de gestión de reseñas</b><span>RD$500/mes · ya incluido en Premium</span></div>
-          <label class="switch">
-            <input type="checkbox" id="resenas">
-            <span class="track"></span><span class="thumb"></span>
-          </label>
         </div>
 
         <div class="extra-row">
@@ -774,7 +799,7 @@
         </div>
 
         <div class="extra-row">
-          <div class="extra-copy"><b>Cambios de fotos/banner extra</b><span>RD$250 c/u, pago único</span></div>
+          <div class="extra-copy"><b>Cambios menores a la web al mes</b><span>1 incluido al mes; desde el 2do, RD$250 c/u</span></div>
           <div class="stepper">
             <button type="button" data-step="fotos" data-dir="-1" aria-label="Restar cambio">−</button>
             <output id="fotosVal">0</output>
@@ -836,13 +861,15 @@
 <script>
 (function(){
   var PLANS = {
-    basico:   { label:'Básico',   setup:4500,  mensual:500,  reseñasIncluidas:false },
-    estandar: { label:'Estándar', setup:8500,  mensual:1000, reseñasIncluidas:false },
-    premium:  { label:'Premium',  setup:15000, mensual:1800, reseñasIncluidas:true  }
+    basico:   { label:'Básico',   setup:6990,  setupWas:9990  },
+    estandar: { label:'Estándar', setup:8490,  setupWas:12490 },
+    premium:  { label:'Premium',  setup:14990, setupWas:21990 }
   };
-  var PUB_EXTRA = 300, RESENAS_PAQUETE = 500, FOTO_EXTRA = 250;
+  var SERVICIO_MENSUAL = 750;
+  var PUB_INCLUIDAS = 1, PUB_EXTRA = 300;
+  var CAMBIOS_INCLUIDOS = 1, CAMBIO_EXTRA = 250;
 
-  var state = { plan:'estandar', pubs:0, resenas:false, secciones:0, fotos:0 };
+  var state = { plan:'estandar', pubs:0, secciones:0, fotos:0 };
 
   function fmt(n){ return 'RD$' + Math.round(n).toLocaleString('es-DO'); }
 
@@ -850,19 +877,18 @@
 
   function render(){
     var plan = currentPlan();
-    var resenasActive = plan.reseñasIncluidas || state.resenas;
-    var resenasCost = plan.reseñasIncluidas ? 0 : (state.resenas ? RESENAS_PAQUETE : 0);
+    var pubsExtra = Math.max(0, state.pubs - PUB_INCLUIDAS);
+    var cambiosExtra = Math.max(0, state.fotos - CAMBIOS_INCLUIDOS);
 
-    var setupTotal = plan.setup + state.fotos*FOTO_EXTRA;
-    var mensualTotal = plan.mensual + state.pubs*PUB_EXTRA + resenasCost;
+    var setupTotal = plan.setup;
+    var mensualTotal = SERVICIO_MENSUAL + pubsExtra*PUB_EXTRA + cambiosExtra*CAMBIO_EXTRA;
 
     var rows = [];
-    rows.push(['Plan ' + plan.label, fmt(plan.setup) + ' + ' + fmt(plan.mensual) + '/mes']);
-    if(state.pubs > 0) rows.push([state.pubs + ' publicación(es) extra/mes', fmt(state.pubs*PUB_EXTRA) + '/mes']);
-    if(state.resenas && !plan.reseñasIncluidas) rows.push(['Paquete de reseñas', fmt(RESENAS_PAQUETE) + '/mes']);
-    if(plan.reseñasIncluidas) rows.push(['Gestión de reseñas', 'Incluido']);
+    rows.push(['Plan ' + plan.label, fmt(plan.setup) + ' pago único']);
+    rows.push(['Servicio mensual', fmt(SERVICIO_MENSUAL) + '/mes (incluye 1 publicación y 1 cambio)']);
+    if(pubsExtra > 0) rows.push([pubsExtra + ' publicación(es) extra/mes', fmt(pubsExtra*PUB_EXTRA) + '/mes']);
+    if(cambiosExtra > 0) rows.push([cambiosExtra + ' cambio(s) extra/mes', fmt(cambiosExtra*CAMBIO_EXTRA) + '/mes']);
     if(state.secciones > 0) rows.push([state.secciones + ' sección(es) extra', 'A cotizar']);
-    if(state.fotos > 0) rows.push([state.fotos + ' cambio(s) de foto extra', fmt(state.fotos*FOTO_EXTRA)]);
 
     var list = document.getElementById('summaryList');
     list.innerHTML = rows.map(function(r){ return '<li><span>'+r[0]+'</span><span>'+r[1]+'</span></li>'; }).join('');
@@ -874,16 +900,12 @@
     document.getElementById('seccionesVal').textContent = state.secciones;
     document.getElementById('fotosVal').textContent = state.fotos;
 
-    var resenasInput = document.getElementById('resenas');
-    resenasInput.disabled = plan.reseñasIncluidas;
-    resenasInput.checked = resenasActive;
-
     var msg = 'Hola WebDom, quiero cotizar el plan ' + plan.label +
-      (state.pubs ? ' con ' + state.pubs + ' publicación(es) extra/mes' : '') +
-      (state.resenas && !plan.reseñasIncluidas ? ', paquete de reseñas' : '') +
+      ' (pago único ' + fmt(setupTotal) + ' + servicio mensual ' + fmt(SERVICIO_MENSUAL) + ')' +
+      (pubsExtra ? ', ' + pubsExtra + ' publicación(es) extra/mes' : '') +
+      (cambiosExtra ? ', ' + cambiosExtra + ' cambio(s) extra/mes' : '') +
       (state.secciones ? ', ' + state.secciones + ' sección(es) extra' : '') +
-      (state.fotos ? ', ' + state.fotos + ' cambio(s) de foto extra' : '') +
-      '. Pago único aprox: ' + fmt(setupTotal) + '. Mensualidad aprox: ' + fmt(mensualTotal) + '/mes.' +
+      '. Mensualidad total aprox: ' + fmt(mensualTotal) + '/mes.' +
       (state.secciones ? ' El precio de las secciones extra se cotiza aparte.' : '');
     document.getElementById('waLink').href = 'https://wa.me/18299782833?text=' + encodeURIComponent(msg);
   }
@@ -899,11 +921,6 @@
       state[key] = Math.max(0, Math.min(20, state[key] + dir));
       render();
     });
-  });
-
-  document.getElementById('resenas').addEventListener('change', function(e){
-    state.resenas = e.target.checked;
-    render();
   });
 
   render();

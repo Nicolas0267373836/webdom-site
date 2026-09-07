@@ -131,6 +131,7 @@
   .gbp-row{ display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--border); }
   .gbp-row:first-of-type{ border-top:none; }
   .gbp-check{ width:20px; height:20px; border-radius:6px; background:var(--accent2-soft); color:var(--accent2); display:flex; align-items:center; justify-content:center; font-size:13px; flex:none; }
+  .gbp-check svg{ width:13px; height:13px; stroke-width:2.6; }
   .gbp-row span{ font-size:14.5px; }
   .gbp-row small{ display:block; color:var(--text-muted); font-size:12.5px; }
 
@@ -147,6 +148,7 @@
     width:40px; height:40px; border-radius:10px; background:var(--accent-soft); color:var(--accent);
     display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:16px;
   }
+  .feature .icon svg{ width:20px; height:20px; stroke-width:2.2; }
   .feature h3{ font-size:16.5px; font-family:'Manrope'; font-weight:700; }
   .feature p{ font-size:14.5px; color:var(--text-muted); margin-top:8px; }
 
@@ -334,6 +336,7 @@
   .contact-item{ display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--border); }
   .contact-item:first-child{ border-top:none; }
   .contact-item .icon{ width:36px; height:36px; border-radius:9px; background:var(--accent2-soft); color:var(--accent2); display:flex; align-items:center; justify-content:center; flex:none; font-size:16px; }
+  .contact-item .icon svg{ width:18px; height:18px; stroke-width:2.2; }
   .contact-item b{ display:block; font-size:14.5px; }
   .contact-item span{ font-size:13.5px; color:var(--text-muted); }
   .contact-item a{ text-decoration:none; }
@@ -393,15 +396,15 @@
         <div class="dots"><span></span><span></span><span></span></div>
       </div>
       <div class="gbp-row">
-        <div class="gbp-check">✓</div>
+        <div class="gbp-check"><i data-lucide="check" aria-hidden="true"></i></div>
         <div><span>Información clínica clara</span><small>Especialidad, horarios, ubicación y contacto en un solo lugar</small></div>
       </div>
       <div class="gbp-row">
-        <div class="gbp-check">✓</div>
+        <div class="gbp-check"><i data-lucide="message-circle" aria-hidden="true"></i></div>
         <div><span>WhatsApp directo</span><small>El paciente puede escribir a tu consultorio sin pasos de más</small></div>
       </div>
       <div class="gbp-row">
-        <div class="gbp-check">✓</div>
+        <div class="gbp-check"><i data-lucide="map-pin" aria-hidden="true"></i></div>
         <div><span>Google Business optimizado</span><small>Tu consultorio listo para aparecer en Maps y el buscador</small></div>
       </div>
     </div>
@@ -417,22 +420,22 @@
     </div>
     <div class="feature-grid">
       <div class="feature">
-        <div class="icon">◧</div>
+        <div class="icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
         <h3>Una web simple que responde lo importante</h3>
         <p>Una o dos páginas con tu especialidad, horarios, ubicación y contacto para que el paciente sepa cómo llegar a tu consultorio.</p>
       </div>
       <div class="feature">
-        <div class="icon">▤</div>
+        <div class="icon"><i data-lucide="map-pin" aria-hidden="true"></i></div>
         <h3>Google Business, donde el paciente busca primero</h3>
         <p>Configuramos y optimizamos tu perfil para que tu consultorio aparezca en Google y Maps cuando buscan tu especialidad cerca.</p>
       </div>
       <div class="feature">
-        <div class="icon">✆</div>
+        <div class="icon"><i data-lucide="star" aria-hidden="true"></i></div>
         <h3>Reseñas que generan confianza</h3>
         <p>Te ayudamos a gestionar y responder reseñas de pacientes para que tu presencia refleje la atención que ofreces.</p>
       </div>
       <div class="feature">
-        <div class="icon">◎</div>
+        <div class="icon"><i data-lucide="calendar-days" aria-hidden="true"></i></div>
         <h3>Tu perfil activo cada mes</h3>
         <p>Publicaciones mensuales en Google Business para que tu consultorio siga mostrando información útil y actualizada.</p>
       </div>
@@ -448,17 +451,17 @@
     </div>
     <div class="feature-grid-3">
       <article class="feature">
-        <div class="icon">◎</div>
+        <div class="icon"><i data-lucide="stethoscope" aria-hidden="true"></i></div>
         <h3>Combo completo, no solo una web</h3>
         <p>No solo entregamos una página. Configuramos también tu Google Business Profile, el lugar donde muchas personas empiezan a buscar un médico o una especialidad cerca.</p>
       </article>
       <article class="feature">
-        <div class="icon">RD$</div>
+        <div class="icon"><i data-lucide="circle-dollar-sign" aria-hidden="true"></i></div>
         <h3>Precios pensados para consultorios de San Pedro</h3>
         <p>Una presencia digital profesional no tiene que sentirse como un proyecto de agencia grande. Trabajamos directo contigo para mantenerlo claro y accesible.</p>
       </article>
       <article class="feature">
-        <div class="icon">✓</div>
+        <div class="icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
         <h3>Seguimos contigo después de la entrega</h3>
         <p>Tu perfil no se queda abandonado. Con la mensualidad seguimos optimizando Google Business, publicando y respondiendo reseñas de pacientes.</p>
       </article>
@@ -508,17 +511,17 @@
     </div>
     <div class="feature-grid-3">
       <div class="feature">
-        <div class="icon">◎</div>
+        <div class="icon"><i data-lucide="map-pinned" aria-hidden="true"></i></div>
         <h3>Configuración inicial</h3>
         <p>Reclamamos o creamos tu ficha con especialidad, horarios, ubicación, teléfono y enlaces de contacto.</p>
       </div>
       <div class="feature">
-        <div class="icon">✎</div>
+        <div class="icon"><i data-lucide="pen-line" aria-hidden="true"></i></div>
         <h3>Publicaciones mensuales</h3>
         <p>Incluimos 2 publicaciones al mes para mantener tu perfil activo y útil para tus pacientes.</p>
       </div>
       <div class="feature">
-        <div class="icon">★</div>
+        <div class="icon"><i data-lucide="star" aria-hidden="true"></i></div>
         <h3>Seguimiento de reseñas</h3>
         <p>Incluido en el servicio mensual: te ayudamos a responder reseñas de pacientes con una atención profesional y cercana.</p>
       </div>
@@ -747,7 +750,7 @@
       <a class="btn btn-accent" id="contactWaLink" href="#" target="_blank" rel="noopener" style="margin-top:16px;width:100%;justify-content:center">Enviar por WhatsApp</a>
 
       <div class="contact-item" style="margin-top:22px;align-items:center">
-        <div class="icon">✆</div>
+        <div class="icon"><i data-lucide="phone" aria-hidden="true"></i></div>
         <div><b>O llama o escribe directo</b><span class="mono" id="phoneDisplay" style="font-size:15px">+1 (829) 978-2833</span></div>
         <button type="button" id="copyPhone" class="btn btn-ghost" style="margin-left:auto;padding:8px 14px;font-size:13px">Copiar</button>
       </div>
@@ -764,8 +767,10 @@
 
 <a class="whatsapp-float" href="https://wa.me/18299782833?text=Hola%20WebDom%2C%20quiero%20hablar%20de%20la%20presencia%20digital%20de%20mi%20consultorio." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="Escríbenos por WhatsApp"><img src="assets/whatsapp.svg" alt=""></a>
 
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 <script>
 (function(){
+  if(window.lucide){ window.lucide.createIcons({ attrs:{ 'aria-hidden':'true' } }); }
   var PLANS = {
     basico:   { label:'Esencial', setup:5990,  setupWas:5990  },
     estandar: { label:'Completo', setup:8490,  setupWas:8490  },

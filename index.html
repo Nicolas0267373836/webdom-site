@@ -380,13 +380,13 @@
     position:fixed; right:24px; bottom:24px; z-index:60;
     width:58px; height:58px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    background:#25D366; color:#FFFFFF; text-decoration:none;
+    background:var(--accent-gradient); color:#FFFFFF; text-decoration:none;
     font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; letter-spacing:-.08em;
     box-shadow:0 12px 28px hsl(var(--shadow) / .32);
     transition:transform .2s ease, box-shadow .2s ease;
   }
   .whatsapp-float:hover{ transform:translateY(-3px) scale(1.04); box-shadow:0 16px 32px hsl(var(--shadow) / .42); }
-  .whatsapp-float:focus-visible{ outline-color:#25D366; }
+  .whatsapp-float:focus-visible{ outline-color:var(--accent2); }
   .whatsapp-float img{ width:29px; height:29px; }
   @media (max-width:720px){ .whatsapp-float{ right:16px; bottom:16px; width:54px; height:54px; } }
 </style>

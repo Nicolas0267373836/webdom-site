@@ -11,58 +11,22 @@
 <style>
   /* ============ TOKENS ============ */
   :root{
-    /* light palette (bare :root = light, per artifact theming contract) */
-    --bg: #FAFBF7;
-    --bg-soft: #EEF8FA;
+    /* Paleta del logo: blanco como base, morado y coral-rosa como acentos. */
+    --bg: #FFFFFF;
+    --bg-soft: #FBF8FC;
     --surface: #FFFFFF;
-    --surface-2: #F8F8FC;
+    --surface-2: #FCFAFD;
     --text: #35084F;
-    --text-muted: #685D76;
-    --border: #E2DCEB;
+    --text-muted: #6A6076;
+    --border: #E6DDEA;
     --accent: #FF694C;
     --accent-pink: #F52764;
     --accent-gradient: linear-gradient(135deg, #FF7A45, #F52764);
     --accent-contrast: #FFFFFF;
-    --accent-soft: #FFE7EA;
-    --accent2: #079CAF;
-    --accent2-soft: #DDF6F8;
+    --accent-soft: #FFF0F1;
+    --accent2: #5A167C;
+    --accent2-soft: #F0E7F4;
     --shadow: 278 44% 20%;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg: #190627;
-      --bg-soft: #230A36;
-      --surface: #2A0E40;
-      --surface-2: #33134D;
-      --text: #FCF8FF;
-      --text-muted: #C7BAD3;
-      --border: #4A275F;
-      --accent: #FF6A4D;
-      --accent-pink: #FF2E6A;
-      --accent-gradient: linear-gradient(135deg, #FF7A45, #FF2E6A);
-      --accent-contrast: #FFFFFF;
-      --accent-soft: #4A1736;
-      --accent2: #13C1CF;
-      --accent2-soft: #0B3441;
-      --shadow: 278 65% 3%;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg: #190627;
-    --bg-soft: #230A36;
-    --surface: #2A0E40;
-    --surface-2: #33134D;
-    --text: #FCF8FF;
-    --text-muted: #C7BAD3;
-    --border: #4A275F;
-    --accent: #FF6A4D;
-    --accent-pink: #FF2E6A;
-    --accent-gradient: linear-gradient(135deg, #FF7A45, #FF2E6A);
-    --accent-contrast: #FFFFFF;
-    --accent-soft: #4A1736;
-    --accent2: #13C1CF;
-    --accent2-soft: #0B3441;
-    --shadow: 278 65% 3%;
   }
 
   *{box-sizing:border-box;}

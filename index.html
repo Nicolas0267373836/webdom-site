@@ -185,25 +185,15 @@
   .team-role{ font-family:'JetBrains Mono'; font-size:12.5px; color:var(--accent2); margin-top:4px; display:block; }
   .team-card p{ color:var(--text-muted); font-size:14.5px; margin-top:12px; }
 
-  /* ============ TESTIMONIALS ============ */
-  .testimonials-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  @media (max-width:900px){ .testimonials-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:620px){ .testimonials-grid{ grid-template-columns:1fr; } }
-  .testimonial-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px; display:flex; flex-direction:column; }
-  .testimonial-person{ display:flex; align-items:center; gap:12px; }
-  .testimonial-avatar{ width:42px; height:42px; border-radius:50%; display:grid; place-items:center; flex:none; background:var(--accent2-soft); color:var(--accent2); font:700 13px 'JetBrains Mono'; }
-  .testimonial-name{ color:var(--text); font-weight:800; font-size:14px; }
-  .testimonial-meta{ color:var(--text-muted); font-size:12.5px; margin-top:2px; }
-  .testimonial-stars{ color:var(--accent); letter-spacing:2px; font-size:15px; margin-top:20px; }
-  .testimonial-quote{ color:var(--text); font-size:16px; font-weight:600; line-height:1.55; margin:12px 0 0; }
-  .price-proof{ margin-top:36px; padding:24px; border:1px solid var(--border); border-radius:20px; background:var(--surface); }
-  .price-proof-title{ font:700 13px 'JetBrains Mono'; color:var(--accent2); text-transform:uppercase; letter-spacing:.05em; }
-  .price-proof-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:14px; margin-top:16px; }
-  .price-proof-card{ padding:16px; border-radius:14px; background:var(--bg-soft); }
-  .price-proof-card b{ display:block; color:var(--accent2); font:700 clamp(20px,3vw,30px) 'JetBrains Mono'; line-height:1.15; }
-  .price-proof-card span{ display:block; color:var(--text-muted); font-size:12.5px; line-height:1.5; margin-top:8px; }
-  .price-proof .comparison-note{ margin:16px 0 0; }
-  @media (max-width:620px){ .price-proof-grid{ grid-template-columns:1fr; } }
+  /* ============ WHY WEBDOM ============ */
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:820px){ .why-grid{ grid-template-columns:1fr; } }
+  .why-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:28px; transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+  .why-card:hover{ transform:translateY(-5px); border-color:var(--accent2); box-shadow:0 16px 30px rgba(50,18,83,.08); }
+  .why-icon{ width:48px; height:48px; display:grid; place-items:center; border-radius:14px; background:var(--accent2-soft); color:var(--accent2); }
+  .why-icon svg{ width:23px; height:23px; stroke-width:2; }
+  .why-card h3{ margin-top:20px; font:800 20px 'Manrope'; color:var(--text); }
+  .why-card p{ margin:10px 0 0; color:var(--text-muted); font-size:15px; line-height:1.65; }
 
   /* ============ PRICING ============ */
   .pricing-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch; }
@@ -643,37 +633,27 @@
 <section id="por-que-webdom">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Experiencias WebDom</span>
-      <h2>Lo que dicen quienes ya trabajan con nosotros.</h2>
+      <span class="eyebrow">Por qué WebDom</span>
+      <h2>Una relación que sigue después de publicar tu web.</h2>
+      <p>Más que entregar una página, nos involucramos para que la presencia digital de tu consultorio siga funcionando para tus pacientes.</p>
     </div>
-    <div class="testimonials-grid">
-      <!-- TESTIMONIO PLACEHOLDER: reemplazar con cliente real -->
-      <article class="testimonial-card">
-        <div class="testimonial-person"><span class="testimonial-avatar">CW</span><div><div class="testimonial-name">Cliente de WebDom</div><div class="testimonial-meta">Consultorio médico</div></div></div>
-        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-        <p class="testimonial-quote">“El proceso fue claro y ahora nuestro consultorio tiene una presencia más profesional en línea.”</p>
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="why-icon"><i data-lucide="handshake" aria-hidden="true"></i></div>
+        <h3>Fidelización</h3>
+        <p>Queremos que sigas con WebDom por el valor que recibes: comunicación clara, seguimiento y una presencia digital que se mantiene activa.</p>
       </article>
-      <!-- TESTIMONIO PLACEHOLDER: reemplazar con cliente real -->
-      <article class="testimonial-card">
-        <div class="testimonial-person"><span class="testimonial-avatar">CW</span><div><div class="testimonial-name">Cliente de WebDom</div><div class="testimonial-meta">Consultorio médico</div></div></div>
-        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-        <p class="testimonial-quote">“La información de Google y la web quedaron fáciles de entender para los pacientes.”</p>
+      <article class="why-card">
+        <div class="why-icon"><i data-lucide="target" aria-hidden="true"></i></div>
+        <h3>Objetivos compartidos</h3>
+        <p>Trabajamos con una meta sencilla: que los pacientes correctos encuentren tu consultorio y tengan la información necesaria para contactarte.</p>
       </article>
-      <!-- TESTIMONIO PLACEHOLDER: reemplazar con cliente real -->
-      <article class="testimonial-card">
-        <div class="testimonial-person"><span class="testimonial-avatar">CW</span><div><div class="testimonial-name">Cliente de WebDom</div><div class="testimonial-meta">Consultorio médico</div></div></div>
-        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-        <p class="testimonial-quote">“Nos gustó contar con acompañamiento para mantener nuestra presencia digital activa.”</p>
+      <article class="why-card">
+        <div class="why-icon"><i data-lucide="messages-square" aria-hidden="true"></i></div>
+        <h3>Atención inmediata</h3>
+        <p>Respondemos con agilidad y sin procesos complicados, para que puedas resolver ajustes y dudas sin dejar tu presencia digital en pausa.</p>
       </article>
     </div>
-    <aside class="price-proof" aria-label="Referencia de precio">
-      <div class="price-proof-title">Una referencia clara de precio</div>
-      <div class="price-proof-grid">
-        <div class="price-proof-card"><b>RD$8,490 vs RD$25,000–40,000</b><span>Lo que cobra una agencia formal en Santo Domingo por una web básica, sin mantenimiento.</span></div>
-        <div class="price-proof-card"><b>RD$750/mes</b><span>Mantenimiento y Google Business Profile incluido — la mayoría de agencias lo cobra aparte.</span></div>
-      </div>
-      <p class="comparison-note">Comparación basada en el plan Completo de WebDom; el alcance de cada agencia puede variar según su propuesta.</p>
-    </aside>
   </div>
 </section>
 

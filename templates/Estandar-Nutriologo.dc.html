@@ -1,0 +1,452 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,600&family=Poppins:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
+  <style>
+    *{box-sizing:border-box;}
+    body{margin:0;}
+    .page{
+      font-family:'Poppins', system-ui, -apple-system, sans-serif;
+      background:#fdf6ee;
+      color:#33254a;
+      -webkit-font-smoothing:antialiased;
+    }
+    .serif{font-family:'Fraunces', Georgia, 'Times New Roman', serif;}
+    .script{font-family:'Caveat', cursive;font-weight:700;}
+    a{color:var(--accent,#e8734a);text-decoration:none;}
+    a:hover{color:var(--primary,#33254a);}
+    img{max-width:100%;display:block;}
+    .container{max-width:1180px;margin:0 auto;padding:0 2rem;}
+    @media (max-width:640px){.container{padding:0 1.25rem;}}
+
+    /* ---- buttons ---- */
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.9rem 1.8rem;border-radius:999px;
+      font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;
+      border:1px solid transparent;cursor:pointer;
+      transition:transform .3s ease, box-shadow .3s ease, background .3s ease, color .3s ease;
+      white-space:nowrap;
+    }
+    .btn-accent{background:var(--accent,#e8734a);color:#fff8f2;}
+    .btn-accent:hover{transform:translateY(-3px);box-shadow:0 16px 30px -14px rgba(51,37,74,.45);}
+    .btn-outline{border-color:rgba(255,255,255,.5);color:#fdf6ee;}
+    .btn-outline:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);}
+    .btn-outline-dark{border-color:rgba(51,37,74,.22);color:#33254a;}
+    .btn-outline-dark:hover{background:rgba(51,37,74,.05);transform:translateY(-3px);}
+
+    /* ---- nav ---- */
+    .nav{position:sticky;top:0;z-index:60;background:rgba(253,246,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(51,37,74,.08);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:86px;}
+    .logo{display:flex;align-items:center;gap:.6rem;}
+    .logo-mark{flex:none;width:34px;height:34px;border-radius:50%;background:var(--primary,#33254a);color:var(--accent,#e8734a);display:flex;align-items:center;justify-content:center;}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-text b{font-size:clamp(1.05rem,2vw,1.3rem);letter-spacing:.01em;color:var(--primary,#33254a);font-weight:700;}
+    .logo-text span{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a7a94;margin-top:.15rem;}
+    .nav-links{display:flex;align-items:center;gap:1.9rem;}
+    .nav-links a{position:relative;color:#3d2c55;font-size:.85rem;letter-spacing:.01em;padding-bottom:.3rem;font-weight:600;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:2px;background:var(--accent,#e8734a);transition:width .3s ease;}
+    .nav-links a:hover::after{width:100%;}
+    .nav-cta{display:flex;align-items:center;gap:.9rem;}
+    .nav-mobile-only{display:none;}
+    @media (max-width:900px){
+      .nav-links{display:none;}
+      .nav-mobile-only{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(51,37,74,.15);border-radius:50%;color:var(--primary,#33254a);}
+    }
+
+    /* ---- hero ---- */
+    .hero{background:var(--primary,#33254a);color:#fdf6ee;padding:5.5rem 0 5rem;overflow:hidden;position:relative;}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.75rem;}}
+    .leaf-deco{position:absolute;color:rgba(255,255,255,.08);pointer-events:none;}
+    .script-tag{font-size:1.5rem;color:var(--accent,#e8734a);margin-bottom:.6rem;display:block;}
+    .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--accent,#e8734a);margin-bottom:1rem;font-weight:700;}
+    .hero h1{font-family:'Fraunces',serif;font-size:clamp(2.1rem,4.2vw,3.35rem);line-height:1.14;margin:0 0 1.4rem;font-weight:600;}
+    .hero h1 em{color:var(--accent,#e8734a);font-style:italic;}
+    .hero p.lead{font-size:1.05rem;line-height:1.75;color:rgba(253,246,238,.85);max-width:520px;margin:0 0 2.3rem;}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
+    .hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;border-top:1px solid rgba(253,246,238,.15);padding-top:1.7rem;}
+    .stat b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:#fff;font-weight:600;}
+    .stat span{font-size:.76rem;color:rgba(253,246,238,.62);letter-spacing:.02em;}
+
+    .blob{border-radius:63% 37% 54% 46% / 51% 45% 55% 49%;}
+    .ph{position:relative;background:linear-gradient(155deg, rgba(255,255,255,.1), rgba(255,255,255,.02));border:1px dashed rgba(253,246,238,.32);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;color:rgba(253,246,238,.6);text-align:center;padding:2.5rem;}
+    .ph-light{background:linear-gradient(155deg, rgba(51,37,74,.05), rgba(51,37,74,.02));border:1px dashed rgba(51,37,74,.18);color:#8a7a94;}
+    .ph svg{opacity:.75;}
+    .ph-label{font-size:.78rem;letter-spacing:.02em;line-height:1.5;max-width:220px;}
+    .hero .ph{aspect-ratio:4/5;position:relative;z-index:1;}
+
+    /* ---- sections ---- */
+    .section{padding:6.5rem 0;}
+    .section-tight{padding:4.5rem 0;}
+    @media (max-width:640px){.section{padding:4rem 0;}.section-tight{padding:3rem 0;}}
+    .section-head{max-width:640px;margin:0 0 3.2rem;}
+    .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+    .section-head .eyebrow{color:var(--primary,#33254a);opacity:.85;}
+    .section-head h2{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.35rem);line-height:1.22;margin:0;font-weight:600;color:#33254a;}
+    .section-head p{margin:.9rem 0 0;color:#6b5c78;line-height:1.7;font-size:1rem;}
+    .bg-alt{background:#f6ecdd;}
+
+    /* ---- como funciona (steps) ---- */
+    .steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.2rem;}
+    @media (max-width:860px){.steps-grid{grid-template-columns:1fr;}}
+    .step-card{position:relative;padding-top:1rem;}
+    .step-num{font-family:'Fraunces',serif;font-style:italic;font-size:3rem;color:var(--accent,#e8734a);opacity:.5;line-height:1;margin-bottom:.6rem;}
+    .step-card h3{font-size:1.1rem;margin:0 0 .6rem;font-weight:700;color:#33254a;}
+    .step-card p{margin:0;font-size:.92rem;line-height:1.65;color:#6b5c78;}
+
+    /* ---- planes ---- */
+    .spec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.85rem;}
+    @media (max-width:860px){.spec-grid{grid-template-columns:1fr 1fr;}}
+    @media (max-width:600px){.spec-grid{grid-template-columns:1fr;}}
+    .spec-card{background:#fff;border:1px solid rgba(51,37,74,.08);border-radius:20px;padding:2.3rem 1.85rem;transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;}
+    .spec-card:hover{transform:translateY(-7px);box-shadow:0 26px 44px -26px rgba(51,37,74,.3);border-color:rgba(51,37,74,0);}
+    .spec-icon{width:50px;height:50px;border-radius:50%;background:rgba(232,115,74,.14);display:flex;align-items:center;justify-content:center;color:var(--primary,#33254a);margin-bottom:1.4rem;transition:transform .35s ease;}
+    .spec-card:hover .spec-icon{transform:scale(1.08);}
+    .spec-card h3{font-size:1.08rem;margin:0 0 .6rem;font-weight:700;color:#33254a;}
+    .spec-card p{margin:0;font-size:.9rem;line-height:1.65;color:#6b5c78;}
+
+    /* ---- reviews ---- */
+    .rating-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.75rem;}
+    .stars{display:flex;gap:.2rem;color:var(--accent,#e8734a);}
+    .rating-num{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:#33254a;}
+    .rating-meta{font-size:.86rem;color:#6b5c78;}
+    .rev-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem;}
+    @media (max-width:860px){.rev-grid{grid-template-columns:1fr;}}
+    .rev-card{background:#fff;border:1px solid rgba(51,37,74,.08);border-radius:20px;padding:2rem;}
+    .rev-card .stars{margin-bottom:1rem;}
+    .rev-card p{margin:0 0 1.2rem;font-size:.92rem;line-height:1.7;color:#4a3a5c;font-style:italic;}
+    .rev-name{font-size:.85rem;font-weight:700;color:#33254a;}
+    .rev-src{font-size:.78rem;color:#8a7a94;}
+
+    /* ---- location ---- */
+    .loc-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3.5rem;align-items:stretch;}
+    @media (max-width:860px){.loc-grid{grid-template-columns:1fr;}}
+    .loc-grid .ph{aspect-ratio:auto;min-height:340px;}
+    .loc-info{display:flex;flex-direction:column;gap:1.6rem;justify-content:center;}
+    .loc-row{display:flex;gap:1rem;align-items:flex-start;}
+    .loc-row svg{flex:none;color:var(--accent,#e8734a);margin-top:.15rem;}
+    .loc-row b{display:block;font-size:.95rem;color:#33254a;margin-bottom:.2rem;}
+    .loc-row span{font-size:.9rem;color:#6b5c78;line-height:1.6;}
+    .loc-actions{display:flex;gap:.85rem;flex-wrap:wrap;}
+
+    /* ---- footer ---- */
+    footer{background:#241a34;color:rgba(253,246,238,.72);padding:4rem 0 0;}
+    .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(253,246,238,.1);}
+    @media (max-width:760px){.foot-grid{grid-template-columns:1fr;gap:2.25rem;}}
+    .foot-grid h4{color:#fdf6ee;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 1.1rem;}
+    .foot-grid a{display:block;color:rgba(253,246,238,.68);font-size:.9rem;margin-bottom:.7rem;}
+    .foot-grid a:hover{color:var(--accent,#e8734a);}
+    .foot-logo b{font-family:'Fraunces',serif;font-size:1.2rem;color:#fdf6ee;font-weight:600;}
+    .foot-logo p{font-size:.88rem;line-height:1.7;color:rgba(253,246,238,.6);max-width:320px;margin:.9rem 0 1.5rem;}
+    .soc-row{display:flex;gap:.75rem;}
+    .soc-row a{width:38px;height:38px;border:1px solid rgba(253,246,238,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0;}
+    .soc-row a:hover{border-color:var(--accent,#e8734a);}
+    .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding:1.6rem 0;font-size:.78rem;color:rgba(253,246,238,.5);}
+    .foot-bottom a{display:inline;margin:0;color:rgba(253,246,238,.5);}
+    .foot-bottom a:hover{color:var(--accent,#e8734a);}
+
+    /* ---- floating whatsapp ---- */
+    .wa-float{position:fixed;right:1.6rem;bottom:1.6rem;z-index:70;width:60px;height:60px;border-radius:50%;background:#2f7a52;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);transition:transform .3s ease;}
+    .wa-float:hover{transform:scale(1.08);}
+    @media (max-width:640px){.wa-float{width:52px;height:52px;right:1.1rem;bottom:1.1rem;}}
+
+    /* ---- entrance motion ---- */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    .rise{animation:fadeUp .7s ease-out both;}
+    .rise-1{animation-delay:.05s;}
+    .rise-2{animation-delay:.16s;}
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+    }
+  </style>
+</helmet>
+
+<div class="page" style="--primary:{{primary}};--accent:{{accent}};">
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 11 13 11 11"/></svg>
+        </div>
+        <div class="logo-text">
+          <b>[Nombre del Dr./Dra.]</b>
+          <span>Nutrición clínica y deportiva</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#especialidades">Planes</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-accent" href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".18"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+          Escribir a WhatsApp
+        </a>
+        <div class="nav-mobile-only">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="leaf-deco" style="right:-40px;top:20px;" width="360" height="360" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 11 13 11 11"/></svg>
+    <div class="container hero-grid">
+      <div class="rise rise-1">
+        <span class="script-tag">Nutrición con calidez</span>
+        <div class="eyebrow">Nutrición basada en evidencia, a tu ritmo</div>
+        <h1>Alcanza tus objetivos con <em>un plan hecho a tu medida.</em></h1>
+        <p class="lead">Consulta con [Nombre del Dr./Dra.], especialista en nutrición clínica, con planes de alimentación personalizados y seguimiento real. Agenda tu cita en minutos, por WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".18"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+            Agendar por WhatsApp
+          </a>
+          <a class="btn btn-outline" href="#especialidades">Ver planes</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>+[X] años</b><span>de experiencia</span></div>
+          <div class="stat"><b>4.9 / 5</b><span>en Google · [X] reseñas</span></div>
+        </div>
+      </div>
+      <div class="rise rise-2">
+        <div class="ph blob">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 11 13 11 11"/></svg>
+          <div class="ph-label">Foto de un plato saludable o del/de la nutriólogo/a</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section" id="como-funciona">
+    <div class="container">
+      <div class="section-head center">
+        <div class="eyebrow">Cómo funciona</div>
+        <h2>Tu proceso, en 3 pasos simples</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Evaluación inicial</h3>
+          <p>Revisamos tus hábitos, objetivos y estado de salud actual, sin juicios y con calma.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>Plan personalizado</h3>
+          <p>Recibes un plan de alimentación ajustado a tu rutina, gustos y presupuesto real.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Seguimiento y ajustes</h3>
+          <p>Nos mantenemos en contacto para ajustar el plan según tu progreso, mes a mes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section class="section bg-alt" id="especialidades">
+    <div class="container">
+      <div class="section-head center">
+        <div class="eyebrow">Planes</div>
+        <h2>Planes pensados para cada objetivo de salud</h2>
+        <p>Estos son ejemplos de servicios frecuentes — personalízalos según los servicios reales de la clínica.</p>
+      </div>
+      <div class="spec-grid">
+        <div class="spec-card">
+          <div class="spec-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12c-2.5 4.65-9.5 9-9.5 9z"/></svg></div>
+          <h3>Consulta nutricional</h3>
+          <p>Evaluación completa de tus hábitos, objetivos y estado de salud actual.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Plan de alimentación personalizado</h3>
+          <p>Menú ajustado a tu rutina, gustos y presupuesto — no una dieta genérica.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h3>Control de peso</h3>
+          <p>Seguimiento de composición corporal y ajustes de plan según tu progreso.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <h3>Nutrición deportiva</h3>
+          <p>Planes de alimentación para rendimiento, recuperación y composición corporal.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/></svg></div>
+          <h3>Nutrición clínica</h3>
+          <p>Manejo nutricional de condiciones como diabetes, hipertensión o colesterol alto.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <h3>Seguimiento mensual</h3>
+          <p>Control periódico para ajustar el plan y mantenerte en el camino correcto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="section" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Opiniones de pacientes</div>
+        <h2>Lo que dicen quienes ya nos visitaron</h2>
+      </div>
+      <div class="rating-row">
+        <div class="rating-num">4.9</div>
+        <div>
+          <div class="stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          <div class="rating-meta">Basado en [X] reseñas de Google Business Profile</div>
+        </div>
+      </div>
+      <div class="rev-grid">
+        <div class="rev-card">
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          <p>[Aquí va una reseña real, copiada tal cual desde Google Business Profile — elige las más detalladas.]</p>
+          <div class="rev-name">[Nombre del paciente]</div>
+          <div class="rev-src">Google</div>
+        </div>
+        <div class="rev-card">
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          <p>[Aquí va una reseña real, copiada tal cual desde Google Business Profile — elige las más detalladas.]</p>
+          <div class="rev-name">[Nombre del paciente]</div>
+          <div class="rev-src">Google</div>
+        </div>
+        <div class="rev-card">
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          </div>
+          <p>[Aquí va una reseña real, copiada tal cual desde Google Business Profile — elige las más detalladas.]</p>
+          <div class="rev-name">[Nombre del paciente]</div>
+          <div class="rev-src">Google</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACION (incluye CTA de cierre) -->
+  <section class="section bg-alt" id="ubicacion">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Ubicación y horario</div>
+        <h2>Te esperamos aquí</h2>
+      </div>
+      <div class="loc-grid">
+        <div class="ph ph-light">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="ph-label">Mapa de Google Maps embebido con la ubicación de la consulta</div>
+        </div>
+        <div class="loc-info">
+          <div class="loc-row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><b>Dirección</b><span>[Calle, número, sector, ciudad, República Dominicana]</span></div>
+          </div>
+          <div class="loc-row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><b>Horario</b><span>[Lunes a viernes], [hora] – [hora]<br>[Sábados], [hora] – [hora]</span></div>
+          </div>
+          <div class="loc-row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><b>Teléfono / WhatsApp</b><span>[+1 809 000 0000]</span></div>
+          </div>
+          <div class="loc-actions">
+            <a class="btn btn-accent" href="#">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".18"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+              Agendar por WhatsApp
+            </a>
+            <a class="btn btn-outline-dark" href="#">Cómo llegar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-logo">
+          <b>[Nombre del Dr./Dra.]</b>
+          <p>Nutrición clínica en [Ciudad, República Dominicana]. Atención personalizada, con cita previa por WhatsApp.</p>
+          <div class="soc-row">
+            <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#especialidades">Planes</a>
+          <a href="#opiniones">Opiniones</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="#">[+1 809 000 0000]</a>
+          <a href="#">[correo@clinica.com]</a>
+          <a href="#">[Dirección corta]</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© [Año] [Nombre de la clínica]. Todos los derechos reservados.</span>
+        <span>Sitio web desarrollado por <a href="#">WebDom</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="#" aria-label="Escribir por WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".2"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+  </a>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"primary":{"editor":"color","default":"#33254a","options":["#33254a","#241a34","#412e5c","#2e2540"],"section":"Marca"},"accent":{"editor":"color","default":"#e8734a","options":["#e8734a","#f0956e","#d9895f","#eb9459"],"section":"Marca"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      primary: this.props.primary ?? '#33254a',
+      accent: this.props.accent ?? '#e8734a'
+    };
+  }
+}
+</script>
+</body>
+</html>

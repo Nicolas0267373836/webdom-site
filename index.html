@@ -241,6 +241,55 @@
   .price-feats li{ display:flex; gap:10px; font-size:14px; align-items:flex-start; }
   .price-feats li::before{ content:'✓'; color:var(--accent2); font-weight:700; flex:none; }
 
+  /* ============ TEMPLATES ============ */
+  .template-tabs{ display:flex; flex-wrap:wrap; gap:10px; margin:0 0 28px; }
+  .template-tab{
+    appearance:none; border:1px solid var(--border); border-radius:100px; background:var(--surface);
+    color:var(--text-muted); padding:10px 18px; cursor:pointer; font:700 13px 'JetBrains Mono',monospace;
+    letter-spacing:.02em; transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .template-tab:hover{ border-color:var(--accent2); color:var(--accent2); }
+  .template-tab[aria-selected="true"]{ color:var(--accent-contrast); background:var(--accent-gradient); border-color:transparent; }
+  .template-panel{ display:none; }
+  .template-panel.is-active{ display:block; animation:template-panel-in .35s ease both; }
+  @keyframes template-panel-in{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
+  .template-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .template-grid{ grid-template-columns:1fr; } }
+  .template-card{
+    --template-main:#0D3B40; --template-detail:#1FAE86;
+    background:var(--surface); border:1px solid var(--border); border-radius:18px; overflow:hidden;
+    display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .template-card:hover{ transform:translateY(-5px); border-color:var(--template-detail); box-shadow:0 18px 34px rgba(53,8,79,.12); }
+  .template-card--nutrition{ --template-main:#33254A; --template-detail:#E8734A; }
+  .template-card--pediatrics{ --template-main:#C65A4E; --template-detail:#F4B942; }
+  .template-preview{ min-height:218px; padding:13px; color:#FFF; background:var(--template-main); position:relative; overflow:hidden; }
+  .template-preview::before,.template-preview::after{ content:''; position:absolute; border-radius:50%; opacity:.18; pointer-events:none; }
+  .template-preview::before{ width:150px; height:150px; top:-78px; right:-30px; background:var(--template-detail); }
+  .template-preview::after{ width:100px; height:100px; bottom:-52px; left:-24px; border:1px solid #FFF; }
+  .template-browser{ height:100%; min-height:192px; padding:10px; position:relative; z-index:1; border:1px solid rgb(255 255 255 / .25); border-radius:11px; background:rgb(255 255 255 / .1); }
+  .template-browser-top{ display:flex; align-items:center; gap:4px; }
+  .template-browser-top span{ display:block; width:5px; height:5px; border-radius:50%; background:#FFF; opacity:.75; }
+  .template-browser-top b{ margin-left:auto; font:500 8px 'JetBrains Mono',monospace; letter-spacing:.08em; opacity:.8; }
+  .template-preview h3{ margin:22px 0 7px; font-family:'Manrope',sans-serif; font-size:23px; font-weight:800; letter-spacing:-.04em; line-height:1.05; max-width:190px; }
+  .template-preview p{ margin:0; max-width:165px; font-size:9px; line-height:1.45; opacity:.88; }
+  .template-preview .template-chip{ display:inline-flex; align-items:center; gap:4px; margin-top:13px; padding:5px 7px; border-radius:100px; background:var(--template-detail); color:#FFF; font:600 8px 'Manrope',sans-serif; }
+  .template-preview .template-shape{ position:absolute; right:16px; bottom:17px; width:68px; height:68px; border:9px solid var(--template-detail); border-radius:22px 22px 30px 30px; transform:rotate(-12deg); }
+  .template-card--nutrition .template-preview h3{ font-family:Georgia,serif; font-style:italic; font-weight:700; }
+  .template-card--nutrition .template-shape{ border-radius:70% 30% 65% 35%; transform:rotate(24deg); }
+  .template-card--pediatrics .template-browser{ border-radius:18px; }
+  .template-card--pediatrics .template-shape{ border-radius:50%; border-width:0; background:var(--template-detail); transform:rotate(0); }
+  .template-card-body{ padding:21px; display:flex; flex-direction:column; align-items:flex-start; flex:1; }
+  .template-card-body .mono{ color:var(--template-main); font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
+  .template-card-body h3{ margin-top:8px; font:800 19px 'Manrope',sans-serif; }
+  .template-card-body p{ margin:9px 0 18px; color:var(--text-muted); font-size:14px; line-height:1.6; }
+  .template-card-body .btn{ margin-top:auto; padding:10px 15px; font-size:13px; color:var(--template-main); border-color:color-mix(in srgb, var(--template-main) 28%, var(--border)); }
+  .template-card-body .btn:hover{ color:#FFF; background:var(--template-main); border-color:var(--template-main); }
+  .template-custom{ margin-top:28px; padding:24px; border:1px solid var(--border); border-radius:16px; background:var(--surface-2); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .template-custom p{ margin:0; color:var(--text-muted); font-size:14.5px; max-width:760px; }
+  .template-custom strong{ color:var(--text); }
+  @media (max-width:620px){ .template-tabs{ gap:8px; } .template-tab{ flex:1; padding:10px 9px; font-size:11px; } .template-custom{ align-items:flex-start; flex-direction:column; } }
+
   /* ============ COMPARISON ============ */
   .comparison-copy{ max-width:760px; color:var(--text-muted); font-size:17px; margin:0 0 16px; }
   .comparison-copy strong{ color:var(--text); }
@@ -372,8 +421,8 @@
       <a href="#hacemos">Qué hacemos</a>
       <a href="#gbp">¿Qué es GBP?</a>
       <a href="#planes">Planes</a>
+      <a href="#plantillas">Plantillas</a>
       <a href="#contacto">Hablemos</a>
-      <a href="#contacto">Contacto</a>
     </div>
     <a class="btn btn-accent nav-cta" href="#contacto">Hablemos</a>
   </div>
@@ -559,6 +608,129 @@
   </div>
 </section>
 
+<section id="plantillas">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Nuestras plantillas</span>
+      <h2>Elige una base pensada para tu especialidad.</h2>
+      <p>Cada plan tiene una versión para dentistas, nutriólogos/as y pediatras. La adaptamos a tu consultorio, tu información y la forma en que tus pacientes te buscan.</p>
+    </div>
+
+    <div class="template-tabs" role="tablist" aria-label="Plantillas por plan">
+      <button class="template-tab" type="button" role="tab" id="tab-basico" aria-selected="true" aria-controls="panel-basico" data-template-plan="basico">Básico</button>
+      <button class="template-tab" type="button" role="tab" id="tab-estandar" aria-selected="false" aria-controls="panel-estandar" data-template-plan="estandar" tabindex="-1">Estándar</button>
+      <button class="template-tab" type="button" role="tab" id="tab-premium" aria-selected="false" aria-controls="panel-premium" data-template-plan="premium" tabindex="-1">Premium</button>
+    </div>
+
+    <div class="template-panel is-active" id="panel-basico" role="tabpanel" aria-labelledby="tab-basico">
+      <div class="template-grid">
+        <article class="template-card">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>ODONTOLOGÍA</b></div><h3>Tu sonrisa, con calma.</h3><p>Atención clara para sentirte seguro desde la primera consulta.</p><span class="template-chip">Ver horarios</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Básico · Dentista</span><h3>Dentista</h3><p>Una página directa con especialidad, horario, ubicación y WhatsApp.</p><a class="btn btn-ghost" href="templates/Basico-Dentista.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+        <article class="template-card template-card--nutrition">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>NUTRICIÓN</b></div><h3>Comer bien, sentirse bien.</h3><p>Un acompañamiento simple para construir hábitos que perduran.</p><span class="template-chip">Conoce mi enfoque</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Básico · Nutriólogo/a</span><h3>Nutriólogo/a</h3><p>Presenta la consulta, tu enfoque nutricional y una forma simple de escribirte.</p><a class="btn btn-ghost" href="templates/Basico-Nutriologo.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+        <article class="template-card template-card--pediatrics">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>PEDIATRÍA</b></div><h3>Crecer con confianza.</h3><p>Información cercana para acompañar cada etapa de tu familia.</p><span class="template-chip">Conoce el consultorio</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Básico · Pediatría</span><h3>Pediatría</h3><p>Información esencial para que las familias contacten con tranquilidad.</p><a class="btn btn-ghost" href="templates/Basico-Pediatria.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="template-panel" id="panel-estandar" role="tabpanel" aria-labelledby="tab-estandar" hidden>
+      <div class="template-grid">
+        <article class="template-card">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>ODONTOLOGÍA</b></div><h3>Tu sonrisa, con calma.</h3><p>Tratamientos, casos y respuestas claras para nuevos pacientes.</p><span class="template-chip">Conoce tratamientos</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Estándar · Dentista</span><h3>Dentista</h3><p>Hero, tratamientos, casos antes y después, reseñas y ubicación.</p><a class="btn btn-ghost" href="templates/Estandar-Dentista.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+        <article class="template-card template-card--nutrition">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>NUTRICIÓN</b></div><h3>Comer bien, sentirse bien.</h3><p>Un proceso cercano para avanzar con intención y constancia.</p><span class="template-chip">Así trabajamos</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Estándar · Nutriólogo/a</span><h3>Nutriólogo/a</h3><p>Hero, proceso en tres pasos, planes, reseñas y ubicación.</p><a class="btn btn-ghost" href="templates/Estandar-Nutriologo.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+        <article class="template-card template-card--pediatrics">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>PEDIATRÍA</b></div><h3>Crecer con confianza.</h3><p>Orientación cálida para cuidar cada etapa de la infancia.</p><span class="template-chip">Edades que atiendo</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Estándar · Pediatría</span><h3>Pediatría</h3><p>Hero, edades que atiende, vacunación, reseñas y ubicación.</p><a class="btn btn-ghost" href="templates/Estandar-Pediatria.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="template-panel" id="panel-premium" role="tabpanel" aria-labelledby="tab-premium" hidden>
+      <div class="template-grid">
+        <article class="template-card">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>ODONTOLOGÍA</b></div><h3>Tu sonrisa, con calma.</h3><p>Una experiencia completa que guía a cada nuevo paciente.</p><span class="template-chip">Agenda una cita</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Premium · Dentista</span><h3>Dentista</h3><p>Bio, tratamientos, casos, urgencias, FAQ y más.</p><a class="btn btn-ghost" href="templates/Premium-Dentista.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+        <article class="template-card template-card--nutrition">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>NUTRICIÓN</b></div><h3>Comer bien, sentirse bien.</h3><p>Una experiencia completa para elegir un cambio que se sostiene.</p><span class="template-chip">Empieza hoy</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Premium · Nutriólogo/a</span><h3>Nutriólogo/a</h3><p>Bio, beneficios, proceso, planes, guía por WhatsApp, FAQ y más.</p><a class="btn btn-ghost" href="templates/Premium-Nutriologo.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+        <article class="template-card template-card--pediatrics">
+          <div class="template-preview"><div class="template-browser"><div class="template-browser-top"><span></span><span></span><span></span><b>PEDIATRÍA</b></div><h3>Crecer con confianza.</h3><p>Una guía completa para cuidar y acompañar a cada familia.</p><span class="template-chip">Conoce a la doctora</span><span class="template-shape"></span></div></div>
+          <div class="template-card-body"><span class="mono">Premium · Pediatría</span><h3>Pediatría</h3><p>Bio, teleconsulta, vacunación, recursos para padres, FAQ y más.</p><a class="btn btn-ghost" href="templates/Premium-Pediatria.dc.html" target="_blank" rel="noopener">Ver plantilla completa</a></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="template-custom">
+      <p><strong>¿Tu especialidad no está aquí?</strong> No hay problema — trabajamos contigo para crear un diseño a la medida de tu consulta, con la misma calidad que ves arriba. Escríbenos por WhatsApp y lo conversamos.</p>
+      <a class="btn btn-accent" href="https://wa.me/18299782833?text=Hola%20WebDom%2C%20quiero%20hablar%20de%20una%20plantilla%20a%20la%20medida%20para%20mi%20consultorio." target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="por-que-webdom">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Por qué WebDom</span>
+      <h2>Una relación que sigue después de publicar tu web.</h2>
+      <p>Más que entregar una página, nos involucramos para que la presencia digital de tu consultorio siga funcionando para tus pacientes.</p>
+    </div>
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="why-icon"><i data-lucide="handshake" aria-hidden="true"></i></div>
+        <h3>Fidelización</h3>
+        <p>Queremos que sigas con WebDom por el valor que recibes: comunicación clara, seguimiento y una presencia digital que se mantiene activa.</p>
+      </article>
+      <article class="why-card">
+        <div class="why-icon"><i data-lucide="target" aria-hidden="true"></i></div>
+        <h3>Objetivos compartidos</h3>
+        <p>Trabajamos con una meta sencilla: que los pacientes correctos encuentren tu consultorio y tengan la información necesaria para contactarte.</p>
+      </article>
+      <article class="why-card">
+        <div class="why-icon"><i data-lucide="messages-square" aria-hidden="true"></i></div>
+        <h3>Atención inmediata</h3>
+        <p>Respondemos con agilidad y sin procesos complicados, para que puedas resolver ajustes y dudas sin dejar tu presencia digital en pausa.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="equipo" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>El equipo detrás de la presencia digital de tu consultorio.</h2>
+      <p>Trato directo con quienes construyen tu web y cuidan tu ficha de Google — sin intermediarios ni departamentos de por medio.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">NI</div>
+        <h3>Nicolás Abud</h3>
+        <span class="team-role">DESARROLLO &amp; PRODUCTO</span>
+        <p>Construye cada web y deja configurada la ficha de Google Business Profile para que tu especialidad sea fácil de encontrar.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">NE</div>
+        <h3>Neftalí Álvarez</h3>
+        <span class="team-role">VENTAS &amp; RELACIÓN CON CLIENTES</span>
+        <p>Conoce cada consultorio, arma el diagnóstico y da seguimiento después de la entrega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="planes" style="background:var(--bg-soft)">
   <div class="container">
     <div class="section-head">
@@ -627,57 +799,6 @@
       </div>
     </div>
     <p class="comparison-note" style="margin:24px auto 0;text-align:center">¿Tu consultorio necesita algo más personalizado? Cotízalo aparte y armamos una propuesta según lo que necesites.</p>
-  </div>
-</section>
-
-<section id="por-que-webdom">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Por qué WebDom</span>
-      <h2>Una relación que sigue después de publicar tu web.</h2>
-      <p>Más que entregar una página, nos involucramos para que la presencia digital de tu consultorio siga funcionando para tus pacientes.</p>
-    </div>
-    <div class="why-grid">
-      <article class="why-card">
-        <div class="why-icon"><i data-lucide="handshake" aria-hidden="true"></i></div>
-        <h3>Fidelización</h3>
-        <p>Queremos que sigas con WebDom por el valor que recibes: comunicación clara, seguimiento y una presencia digital que se mantiene activa.</p>
-      </article>
-      <article class="why-card">
-        <div class="why-icon"><i data-lucide="target" aria-hidden="true"></i></div>
-        <h3>Objetivos compartidos</h3>
-        <p>Trabajamos con una meta sencilla: que los pacientes correctos encuentren tu consultorio y tengan la información necesaria para contactarte.</p>
-      </article>
-      <article class="why-card">
-        <div class="why-icon"><i data-lucide="messages-square" aria-hidden="true"></i></div>
-        <h3>Atención inmediata</h3>
-        <p>Respondemos con agilidad y sin procesos complicados, para que puedas resolver ajustes y dudas sin dejar tu presencia digital en pausa.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="equipo" style="background:var(--bg-soft)">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Quiénes somos</span>
-      <h2>El equipo detrás de la presencia digital de tu consultorio.</h2>
-      <p>Trato directo con quienes construyen tu web y cuidan tu ficha de Google — sin intermediarios ni departamentos de por medio.</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="avatar">NI</div>
-        <h3>Nicolás Abud</h3>
-        <span class="team-role">DESARROLLO &amp; PRODUCTO</span>
-        <p>Construye cada web y deja configurada la ficha de Google Business Profile para que tu especialidad sea fácil de encontrar.</p>
-      </div>
-      <div class="team-card">
-        <div class="avatar">NE</div>
-        <h3>Neftalí Álvarez</h3>
-        <span class="team-role">VENTAS &amp; RELACIÓN CON CLIENTES</span>
-        <p>Conoce cada consultorio, arma el diagnóstico y da seguimiento después de la entrega.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -798,6 +919,25 @@
   };
 
   var state = { plan:'estandar', publicaciones:0, secciones:0, diagnostico:false };
+
+  // Galería de plantillas: cada plan muestra sus tres especialidades sin recargar la página.
+  var templateTabs = document.querySelectorAll('[data-template-plan]');
+  var templatePanels = document.querySelectorAll('.template-panel');
+  templateTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var selectedPlan = tab.getAttribute('data-template-plan');
+      templateTabs.forEach(function(button){
+        var selected = button === tab;
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+      });
+      templatePanels.forEach(function(panel){
+        var selected = panel.id === 'panel-' + selectedPlan;
+        panel.classList.toggle('is-active', selected);
+        panel.hidden = !selected;
+      });
+    });
+  });
 
   function fmt(n){ return 'RD$' + Math.round(n).toLocaleString('es-DO'); }
 

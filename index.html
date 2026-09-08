@@ -185,12 +185,24 @@
   .team-card p{ color:var(--text-muted); font-size:14.5px; margin-top:12px; }
 
   /* ============ TESTIMONIALS ============ */
-  .testimonials-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-  @media (max-width:720px){ .testimonials-grid{ grid-template-columns:1fr; } }
-  .testimonial-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:28px; }
-  .testimonial-mark{ color:var(--accent); font-family:'Unbounded'; font-size:42px; line-height:.8; }
-  .testimonial-quote{ color:var(--text); font-size:17px; font-weight:600; margin:16px 0; }
-  .testimonial-meta{ color:var(--text-muted); font-size:13.5px; }
+  .testimonials-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:900px){ .testimonials-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .testimonials-grid{ grid-template-columns:1fr; } }
+  .testimonial-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px; display:flex; flex-direction:column; }
+  .testimonial-person{ display:flex; align-items:center; gap:12px; }
+  .testimonial-avatar{ width:42px; height:42px; border-radius:50%; display:grid; place-items:center; flex:none; background:var(--accent2-soft); color:var(--accent2); font:700 13px 'JetBrains Mono'; }
+  .testimonial-name{ color:var(--text); font-weight:800; font-size:14px; }
+  .testimonial-meta{ color:var(--text-muted); font-size:12.5px; margin-top:2px; }
+  .testimonial-stars{ color:var(--accent); letter-spacing:2px; font-size:15px; margin-top:20px; }
+  .testimonial-quote{ color:var(--text); font-size:16px; font-weight:600; line-height:1.55; margin:12px 0 0; }
+  .price-proof{ margin-top:36px; padding:24px; border:1px solid var(--border); border-radius:20px; background:var(--surface); }
+  .price-proof-title{ font:700 13px 'JetBrains Mono'; color:var(--accent2); text-transform:uppercase; letter-spacing:.05em; }
+  .price-proof-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:14px; margin-top:16px; }
+  .price-proof-card{ padding:16px; border-radius:14px; background:var(--bg-soft); }
+  .price-proof-card b{ display:block; color:var(--accent2); font:700 clamp(20px,3vw,30px) 'JetBrains Mono'; line-height:1.15; }
+  .price-proof-card span{ display:block; color:var(--text-muted); font-size:12.5px; line-height:1.5; margin-top:8px; }
+  .price-proof .comparison-note{ margin:16px 0 0; }
+  @media (max-width:620px){ .price-proof-grid{ grid-template-columns:1fr; } }
 
   /* ============ PRICING ============ */
   .pricing-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch; }
@@ -595,7 +607,8 @@
         <div class="price-sub">+ RD$750/mes de servicio</div>
         <div class="price-sub">Dominio no incluido</div>
         <ul class="price-feats">
-          <li>Web de 2–5 páginas, galería y reseñas incrustadas</li>
+          <li>Web de 2–5 páginas</li>
+          <li>Galería y reseñas incrustadas para generar confianza</li>
           <li>Configuración y optimización de Google Business Profile</li>
           <li>Servicio mensual: reseñas, soporte, 1 publicación y 1 cambio incluidos</li>
         </ul>
@@ -615,7 +628,8 @@
         <ul class="price-feats">
           <li>Web personalizada</li>
           <li>Configuración y optimización de Google Business Profile</li>
-          <li>Servicio mensual: reseñas, soporte, 1 publicación y 1 cambio incluidos</li>
+          <li>Gestión de reseñas para reforzar la confianza</li>
+          <li>Servicio mensual: soporte, 1 publicación y 1 cambio incluidos</li>
           <li>Soporte prioritario para mantener tu presencia activa</li>
         </ul>
         <a class="btn btn-ghost" href="#calculadora">Ver plan Premium</a>
@@ -628,59 +642,37 @@
 <section id="por-que-webdom">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">¿Por qué elegir WebDom?</span>
-      <h2>Ni agencia cara, ni freelancer que desaparece.</h2>
+      <span class="eyebrow">Experiencias WebDom</span>
+      <h2>Lo que dicen quienes ya trabajan con nosotros.</h2>
     </div>
-    <p class="comparison-copy"><strong>Trabajamos contigo de forma directa.</strong> Una web clara para tu consultorio, una ficha de Google cuidada y las mismas dos personas respondiéndote cuando escribes.</p>
-    <p class="comparison-note">Comparación basada en el plan Estándar de WebDom; el alcance de cada agencia puede variar según su propuesta.</p>
-    <div class="comparison-metrics" aria-label="Resumen de WebDom">
-      <div class="comparison-metric"><b><span data-count-to="3">0</span> pasos</b><span>para poner en marcha tu presencia digital</span></div>
-      <div class="comparison-metric"><b>hasta <span data-count-to="7">0</span> días</b><span>para la entrega del plan Estándar</span></div>
-      <div class="comparison-metric"><b><span data-count-to="3">0</span> áreas</b><span>para que los pacientes te encuentren</span></div>
+    <div class="testimonials-grid">
+      <!-- TESTIMONIO PLACEHOLDER: reemplazar con cliente real -->
+      <article class="testimonial-card">
+        <div class="testimonial-person"><span class="testimonial-avatar">CW</span><div><div class="testimonial-name">Cliente de WebDom</div><div class="testimonial-meta">Consultorio médico</div></div></div>
+        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+        <p class="testimonial-quote">“Aquí irá un comentario real sobre la experiencia con WebDom, su web y Google Business.”</p>
+      </article>
+      <!-- TESTIMONIO PLACEHOLDER: reemplazar con cliente real -->
+      <article class="testimonial-card">
+        <div class="testimonial-person"><span class="testimonial-avatar">CW</span><div><div class="testimonial-name">Cliente de WebDom</div><div class="testimonial-meta">Consultorio médico</div></div></div>
+        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+        <p class="testimonial-quote">“Aquí irá un comentario real sobre cómo los pacientes encuentran y contactan el consultorio.”</p>
+      </article>
+      <!-- TESTIMONIO PLACEHOLDER: reemplazar con cliente real -->
+      <article class="testimonial-card">
+        <div class="testimonial-person"><span class="testimonial-avatar">CW</span><div><div class="testimonial-name">Cliente de WebDom</div><div class="testimonial-meta">Consultorio médico</div></div></div>
+        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+        <p class="testimonial-quote">“Aquí irá un comentario real sobre el acompañamiento y soporte de WebDom.”</p>
+      </article>
     </div>
-    <div class="comparison-wrap">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th scope="col">Concepto</th>
-            <th scope="col">Agencia formal (Santo Domingo)</th>
-            <th scope="col" class="webdom">WebDom (Estándar)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Precio</th>
-            <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">RD$25,000–40,000</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">RD$8,490</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Mantenimiento incluido</th>
-            <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">No (aparte)</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">Servicio mensual de RD$750</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Entrega</th>
-            <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">No especificado</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">5–7 días</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Configuración GBP</th>
-            <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">Extra</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">✓ Incluida</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Reseñas incrustadas en la web</th>
-            <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">Rara vez</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">✓ Incluidas</span></td>
-          </tr>
-          <tr>
-            <th scope="row">Soporte post-entrega</th>
-            <td data-label="Agencia formal (Santo Domingo)" class="comparison-muted">Según contrato</td>
-            <td data-label="WebDom (Estándar)" class="webdom"><span class="comparison-good">✓ Soporte mensual</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <aside class="price-proof" aria-label="Referencia de precio">
+      <div class="price-proof-title">Una referencia clara de precio</div>
+      <div class="price-proof-grid">
+        <div class="price-proof-card"><b>RD$8,490 vs RD$25,000–40,000</b><span>Lo que cobra una agencia formal en Santo Domingo por una web básica, sin mantenimiento.</span></div>
+        <div class="price-proof-card"><b>RD$750/mes</b><span>Mantenimiento y Google Business Profile incluido — la mayoría de agencias lo cobra aparte.</span></div>
+      </div>
+      <p class="comparison-note">Comparación basada en el plan Completo de WebDom; el alcance de cada agencia puede variar según su propuesta.</p>
+    </aside>
   </div>
 </section>
 

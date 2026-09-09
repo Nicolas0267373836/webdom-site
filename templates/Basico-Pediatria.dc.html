@@ -64,6 +64,7 @@
     .ph{position:relative;border-radius:28px;background:linear-gradient(155deg, rgba(255,255,255,.14), rgba(255,255,255,.02));border:2px dashed rgba(255,250,242,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;color:rgba(255,250,242,.65);text-align:center;padding:2.5rem;}
     .ph svg{opacity:.8;}
     .ph-label{font-size:.78rem;letter-spacing:.02em;line-height:1.5;max-width:220px;}
+    .photo-frame{padding:0;overflow:hidden;border-style:solid;}.template-photo{width:100%;height:100%;display:block;object-fit:cover;}
     .hero .ph{aspect-ratio:4/5;position:relative;z-index:1;}
 
     /* ---- quick-info: sigue siendo parte de la misma sección, solo una franja más clara ---- */
@@ -154,10 +155,7 @@
           </div>
         </div>
         <div class="rise rise-2">
-          <div class="ph">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <div class="ph-label">Foto de padre/madre con su hijo/a, o del/de la pediatra</div>
-          </div>
+          <div class="ph photo-frame"><img class="template-photo" src="assets/pediatria-hero-unsplash.jpg" alt="Foto de ejemplo de una consulta pediátrica"></div>
         </div>
       </div>
     </div>

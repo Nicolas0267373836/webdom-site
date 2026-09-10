@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte mensual | WebDom</title>
+  <style>
+    :root{--ink:#201525;--muted:#6f6274;--line:#e7dfe9;--paper:#fff;--soft:#faf7fb;--purple:#521080;--lilac:#f2e8fa;--green:#08735e}
+    *{box-sizing:border-box} body{margin:0;background:#f4eff6;color:var(--ink);font-family:Arial,sans-serif;line-height:1.5}
+    .report{max-width:960px;margin:32px auto;background:var(--paper);box-shadow:0 20px 60px rgba(43,18,56,.12)}
+    .top{padding:38px 46px;background:linear-gradient(130deg,#311046,#6f159a);color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+    .brand{font-size:20px;font-weight:800;letter-spacing:-.03em}.brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:#d7ff5f;margin-right:7px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;opacity:.78;margin:26px 0 6px}.top h1{font-size:31px;line-height:1.12;margin:0}.period{border:1px solid rgba(255,255,255,.3);padding:11px 14px;border-radius:10px;font-size:13px;white-space:nowrap}
+    .client{padding:24px 46px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.client b,.label{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}.placeholder{font-weight:700;color:var(--ink)}
+    main{padding:38px 46px}.section{margin-top:36px}.section:first-child{margin-top:0}.section h2{font-size:19px;margin:0 0 8px}.section-intro{margin:0 0 18px;color:var(--muted);font-size:14px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:17px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}.metric .value{font-size:27px;font-weight:800;color:var(--purple);letter-spacing:-.04em}.metric .name{color:var(--muted);font-size:12px;margin-top:2px}
+    .activity{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{border:1px solid var(--line);border-radius:12px;padding:19px}.card h3{font-size:15px;margin:0 0 11px}.card ul{margin:0;padding-left:19px;color:var(--muted);font-size:14px}.card li+li{margin-top:7px}
+    .insight{border-left:4px solid var(--purple);background:var(--lilac);padding:18px 20px;border-radius:0 10px 10px 0}.insight p{margin:0;font-size:14px}.next{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.next-item{border:1px solid var(--line);border-radius:12px;padding:16px}.number{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--purple);color:#fff;font-size:12px;font-weight:700;margin-bottom:11px}.next-item p{margin:0;color:var(--muted);font-size:14px}
+    .note{font-size:12px;color:var(--muted);margin-top:14px}.footer{margin-top:38px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px}.footer b{color:var(--green)}.print{position:fixed;right:20px;bottom:20px;border:none;border-radius:100px;background:var(--purple);color:#fff;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:0 10px 20px rgba(43,18,56,.25)}
+    @media(max-width:700px){.report{margin:0}.top,.client,main{padding-left:22px;padding-right:22px}.top,.client,.metrics,.activity,.next{grid-template-columns:1fr}.top{display:block}.period{display:inline-block;margin-top:18px}.metrics{display:grid}.footer{display:block}.footer p+p{margin-top:8px}}@media print{body{background:#fff}.report{margin:0;max-width:none;box-shadow:none}.print{display:none}}
+  </style>
+</head>
+<body>
+  <article class="report">
+    <header class="top"><div><div class="brand"><span></span>WebDom</div><p class="eyebrow">Reporte mensual de presencia digital</p><h1>Resultados y próximos pasos</h1></div><div class="period">[MES] [AÑO]</div></header>
+    <section class="client"><div><span class="label">Consultorio</span><span class="placeholder">[NOMBRE DEL CONSULTORIO]</span></div><div><span class="label">Plan contratado</span><span class="placeholder">[EJ. ESTÁNDAR + PRO]</span></div><div><span class="label">Responsable WebDom</span><span class="placeholder">[NOMBRE]</span></div></section>
+    <main>
+      <section class="section"><h2>Resumen del mes</h2><p class="section-intro">Una vista simple de la actividad generada por la presencia digital del consultorio. Completa solo los datos que estén disponibles.</p><div class="metrics"><div class="metric"><div class="value">[00]</div><div class="name">Vistas en Google Business</div></div><div class="metric"><div class="value">[00]</div><div class="name">Clics a web o WhatsApp</div></div><div class="metric"><div class="value">[00]</div><div class="name">Solicitudes de cita</div></div><div class="metric"><div class="value">[00]</div><div class="name">Citas confirmadas</div></div></div></section>
+      <section class="section activity"><article class="card"><h3>Trabajo realizado por WebDom</h3><ul><li>[Publicación 1 en Google Business]</li><li>[Publicación 2 en Google Business]</li><li>[Reseñas respondidas o gestionadas]</li><li>[Cambio realizado en la web]</li></ul></article><article class="card"><h3>Origen de las solicitudes</h3><ul><li>Google / Maps: [00]</li><li>WhatsApp: [00]</li><li>Instagram o redes: [00]</li><li>QR, recomendación u otro: [00]</li></ul></article></section>
+      <section class="section"><h2>Lo que vimos este mes</h2><div class="insight"><p><strong>[HALLAZGO PRINCIPAL.]</strong> Ejemplo: Las solicitudes desde Google aumentaron después de actualizar horarios y publicar información sobre la especialidad. El siguiente paso es reforzar el enlace de cita en WhatsApp y recepción.</p></div></section>
+      <section class="section"><h2>Próximos pasos</h2><p class="section-intro">Acciones concretas para el siguiente mes. Deben ser específicas, realistas y asignadas.</p><div class="next"><article class="next-item"><span class="number">1</span><p>[Acción WebDom: ej. actualizar servicio destacado en Google Business.]</p></article><article class="next-item"><span class="number">2</span><p>[Acción del consultorio: ej. colocar el QR de cita en recepción.]</p></article><article class="next-item"><span class="number">3</span><p>[Acción compartida: ej. solicitar reseñas después de las consultas.]</p></article></div></section>
+      <section class="section"><h2>Lo que necesitamos del consultorio</h2><p class="section-intro">[EJ. Confirmar nuevos horarios, enviar foto autorizada del equipo, informar cambios de servicios o responder las solicitudes pendientes.]</p><p class="note">Este reporte presenta actividad y resultados observables. No garantiza una cantidad de pacientes; la conversión final también depende de la disponibilidad, respuesta y atención del consultorio. No incluir nombres, diagnósticos ni información médica de pacientes.</p></section>
+      <footer class="footer"><p><b>WebDom</b> · Presencia digital para consultorios</p><p>Contacto: +1 (829) 978-2833 · techwebdom@gmail.com</p></footer>
+    </main>
+  </article>
+  <button class="print" type="button" onclick="window.print()">Guardar como PDF</button>
+</body>
+</html>

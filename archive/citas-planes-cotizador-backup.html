@@ -1,0 +1,124 @@
+<!--
+  RESPALDO — Sistema de "Citas" retirado temporalmente de index.html (2026-09-11).
+  Contiene el HTML y JS originales de:
+    - Enlace de navegación "Citas"
+    - Pestaña e ítems de "Solicitud de citas" en la sección Planes
+    - Pestaña e ítems de "Combo en oferta" (Básico+Esencial, Estándar+Pro, Premium+Clínicas)
+    - Selector "Sistema de citas" y opción "Sin plan web / Solo citas" del cotizador
+    - Objetos SISTEMAS y COMBOS, y la función selectQuote() del cotizador
+  Para restaurar: reinsertar cada bloque en su ubicación original dentro de index.html
+  (sección #planes, sección #calculadora y el <script> principal) y revertir los
+  textos editados en la sección Planes/Cotizador de index.html.
+-->
+
+<!-- ===== Nav ===== -->
+<a href="#planes">Citas</a>
+
+<!-- ===== Pestañas de la sección Planes (antes de quitar Citas y Combos) ===== -->
+<div class="plan-tabs" role="tablist" aria-label="Opciones de planes">
+  <button class="plan-tab" type="button" role="tab" aria-selected="false" aria-controls="plan-web" id="tab-web" data-plan-tab="web" tabindex="-1">Planes</button>
+  <button class="plan-tab" type="button" role="tab" aria-selected="false" aria-controls="plan-citas" id="tab-citas" data-plan-tab="citas" tabindex="-1">Solicitud de citas</button>
+  <button class="plan-tab" type="button" role="tab" aria-selected="true" aria-controls="plan-combos" id="tab-combos" data-plan-tab="combos">Combo en oferta</button>
+</div>
+
+<!-- ===== Panel: Solicitud de citas ===== -->
+<div class="plan-panel" id="plan-citas" role="tabpanel" aria-labelledby="tab-citas" hidden>
+  <div class="pricing-grid">
+    <article class="price-card"><h3>Citas Esencial</h3><div class="price-line"><div><span class="price-was">RD$4,990</span><span class="amount">RD$2,990</span><span class="unit">adicional de configuración</span></div><span class="discount-badge">-40%</span></div><div class="price-sub">+ RD$250/mes adicional</div><ul class="price-feats"><li>Formulario público de solicitud de cita</li><li>Correo al consultorio y confirmación al paciente</li><li>WhatsApp manual para coordinar con el paciente</li><li>Para un doctor o consultorio pequeño</li></ul><a class="btn btn-ghost" href="#calculadora" data-quote-system="esencial">Cotizar Citas Esencial</a></article>
+    <article class="price-card featured"><span class="badge">Más completo</span><h3>Citas Pro</h3><div class="price-line"><div><span class="price-was">RD$7,500</span><span class="amount">RD$4,900</span><span class="unit">adicional de configuración</span></div><span class="discount-badge">-35%</span></div><div class="price-sub">+ RD$600/mes adicional</div><ul class="price-feats"><li>Todo lo de Citas Esencial</li><li>Información personal y pre-cita protegida</li><li>Panel privado para un doctor</li><li>Alertas en el celular y estados de seguimiento</li><li>Confirmar por WhatsApp, completar o descartar</li></ul><a class="btn btn-accent" href="#calculadora" data-quote-system="pro">Cotizar Citas Pro</a></article>
+    <article class="price-card"><h3>Clínicas a medida</h3><div class="price-line"><div><span class="price-was">Desde RD$14,900</span><span class="amount">Desde RD$9,900</span><span class="unit">adicional de configuración</span></div><span class="discount-badge">-34%</span></div><div class="price-sub">Desde RD$1,500/mes adicional</div><ul class="price-feats"><li>Varios médicos, especialidades o sucursales</li><li>Accesos para recepción, médico y administrador</li><li>Panel central y reportes de solicitudes</li><li>Alcance, desarrollo y soporte definidos por clínica</li><li>Recordatorios y automatizaciones: cotizados según alcance</li></ul><a class="btn btn-ghost" href="#calculadora" data-quote-system="clinica">Cotizar Clínicas</a></article>
+  </div>
+</div>
+
+<!-- ===== Panel: Combo en oferta ===== -->
+<div class="plan-panel is-active" id="plan-combos" role="tabpanel" aria-labelledby="tab-combos">
+  <div class="section-head" style="margin:0 auto 32px;text-align:center">
+    <span class="eyebrow" style="margin:0 auto">Oferta principal</span>
+    <h2 style="margin-top:14px;font-size:clamp(24px,3vw,32px)">Estándar + Pro: presencia y seguimiento en un solo sistema.</h2>
+    <p>La opción recomendada para un doctor que quiere ser encontrado, recibir solicitudes y organizarlas desde un panel privado.</p>
+  </div>
+  <div class="pricing-grid">
+    <article class="price-card"><h3>Básico + Esencial</h3><div class="price-line"><div><span class="price-was">RD$14,980</span><span class="amount">RD$9,980</span><span class="unit">de configuración</span></div><span class="discount-badge">-33%</span></div><div class="price-sub">RD$950/mes</div><ul class="price-feats"><li>Web Básica y Google Business Profile</li><li>Formulario de solicitud de cita</li><li>Correo al consultorio y al paciente</li><li>Para empezar a recibir solicitudes</li></ul><a class="btn btn-ghost" href="#calculadora" data-quote-plan="basico" data-quote-system="esencial">Cotizar combo</a></article>
+    <article class="price-card featured"><span class="badge">Oferta principal</span><h3>Estándar + Pro</h3><div class="price-line"><div><span class="price-was">RD$19,990</span><span class="amount">RD$13,390</span><span class="unit">de configuración</span></div><span class="discount-badge">-33%</span></div><div class="price-sub">RD$1,350/mes</div><ul class="price-feats"><li>Web Estándar y Google Business Profile</li><li>Formulario, pre-cita y panel privado</li><li>Alertas y seguimiento de solicitudes</li><li>Reporte mensual de actividad y solicitudes</li><li>Para un doctor que quiere administrar sus citas</li></ul><a class="btn btn-accent" href="#calculadora" data-quote-plan="estandar" data-quote-system="pro">Cotizar oferta principal</a></article>
+    <article class="price-card"><h3>Premium + Clínicas</h3><div class="price-line"><div><span class="price-was">Desde RD$36,890</span><span class="amount">Desde RD$24,890</span><span class="unit">de configuración</span></div><span class="discount-badge">-33%</span></div><div class="price-sub">Desde RD$2,000/mes</div><ul class="price-feats"><li>Web Premium y Google Business Profile</li><li>Varios médicos, roles o sucursales</li><li>Panel central y reportes</li><li>Propuesta según el alcance de la clínica</li></ul><a class="btn btn-ghost" href="#calculadora" data-quote-plan="premium" data-quote-system="clinica">Cotizar clínica</a></article>
+  </div>
+  <p class="comparison-note" style="margin:24px auto 0;text-align:center">Los precios de Clínicas a medida pueden variar según médicos, sucursales, accesos y automatizaciones requeridas.</p>
+</div>
+
+<!-- ===== Cotizador: opción "Sin plan web / Solo citas" ===== -->
+<div class="plan-opt">
+  <input type="radio" name="plan" id="plan-solo-citas" value="ninguno">
+  <label for="plan-solo-citas"><b>Sin plan web</b><span>Solo citas</span></label>
+</div>
+
+<!-- ===== Cotizador: selector "Sistema de citas" ===== -->
+<span class="field-label">2. Elige tu sistema de citas (opcional)</span>
+<div class="plan-picker system-picker" id="systemPicker">
+  <div class="plan-opt">
+    <input type="radio" name="sistema" id="sistema-ninguno" value="ninguno" checked>
+    <label for="sistema-ninguno"><b>Sin sistema</b><span>Solo web</span></label>
+  </div>
+  <div class="plan-opt">
+    <input type="radio" name="sistema" id="sistema-esencial" value="esencial">
+    <label for="sistema-esencial"><b>Esencial</b><span>RD$2,990</span></label>
+  </div>
+  <div class="plan-opt">
+    <input type="radio" name="sistema" id="sistema-pro" value="pro">
+    <label for="sistema-pro"><b>Pro</b><span>RD$4,900</span></label>
+  </div>
+  <div class="plan-opt">
+    <input type="radio" name="sistema" id="sistema-clinica" value="clinica">
+    <label for="sistema-clinica"><b>Clínicas</b><span>Desde RD$9,900</span></label>
+  </div>
+</div>
+
+<!--
+  ===== JS relacionado (dentro del <script> principal) =====
+
+  var SISTEMAS = {
+    esencial: { label:'Citas Esencial', setup:2990, mensual:250 },
+    pro:      { label:'Citas Pro',      setup:4900, mensual:600 },
+    clinica:  { label:'Clínicas a medida', setup:9900, mensual:1500, desde:true }
+  };
+  var COMBOS = {
+    'basico-esencial':   { setup:9980,  mensual:950 },
+    'estandar-pro':      { setup:13390, mensual:1350 },
+    'premium-clinica':   { setup:24890, mensual:2000, desde:true }
+  };
+
+  // state original incluía: { plan:'estandar', sistema:'ninguno', publicaciones:0, secciones:0 }
+
+  function currentSistema(){ return SISTEMAS[state.sistema] || null; }
+
+  // Dentro de render(): lógica de combo, filas de "sistema" y mensaje de WhatsApp con sistema:
+  //   var sistema = currentSistema();
+  //   var combo = plan && sistema ? COMBOS[state.plan + '-' + state.sistema] : null;
+  //   ...
+  //   if(sistema && !combo){
+  //     rows.push([sistema.label, totalFmt(sistema.setup, sistema.desde) + ' de configuración']);
+  //     rows.push(['Servicio de citas', totalFmt(sistema.mensual, sistema.desde) + '/mes']);
+  //   }
+  //   if(!plan && !sistema) rows.push(['Selecciona un plan web o sistema de citas', '']);
+  //   ...
+  //   if(sistema) seleccion.push(sistema.label);
+
+  document.getElementById('systemPicker').addEventListener('change', function(e){
+    if(e.target.name === 'sistema'){ state.sistema = e.target.value; render(); }
+  });
+
+  function selectQuote(plan, sistema){
+    state.plan = plan || 'ninguno';
+    state.sistema = sistema || 'ninguno';
+    document.querySelector('input[name="plan"][value="' + state.plan + '"]').checked = true;
+    document.querySelector('input[name="sistema"][value="' + state.sistema + '"]').checked = true;
+    render();
+    document.getElementById('calculadora').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  document.querySelectorAll('[data-quote-system]').forEach(function(button){
+    button.addEventListener('click', function(e){
+      e.preventDefault();
+      selectQuote(button.getAttribute('data-quote-plan'), button.getAttribute('data-quote-system'));
+    });
+  });
+-->

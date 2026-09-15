@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integraxis Consulting — Consultoría fiscal y contable en San Pedro de Macorís</title>
+<meta name="description" content="Integraxis Consulting: declaración de impuestos, auditoría y asesoría fiscal para personas y empresas de San Pedro de Macorís. Atención directa por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Manrope',system-ui,-apple-system,sans-serif;background:#fafaf8;color:#15201f;-webkit-font-smoothing:antialiased;}
+  .serif{font-family:'Fraunces',Georgia,'Times New Roman',serif;}
+  a{color:#1b7a78;text-decoration:none;}
+  a:hover{color:#0e2a29;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1180px;margin:0 auto;padding:0 2rem;}
+  @media (max-width:640px){.container{padding:0 1.25rem;}}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.7rem;border-radius:10px;font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.01em;border:1px solid transparent;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease,background .3s ease,color .3s ease;white-space:nowrap;}
+  .btn-accent{background:#27A4A2;color:#06201f;}
+  .btn-accent:hover{transform:translateY(-3px);box-shadow:0 16px 30px -14px rgba(14,42,41,.4);}
+  .btn-outline{border-color:rgba(255,255,255,.35);color:#fafaf8;}
+  .btn-outline:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);}
+  .btn-outline-dark{border-color:rgba(14,42,41,.25);color:#0e2a29;}
+  .btn-outline-dark:hover{background:rgba(14,42,41,.05);transform:translateY(-3px);}
+
+  /* ---- nav ---- */
+  .nav{position:sticky;top:0;z-index:60;background:rgba(250,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(14,42,41,.08);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:82px;padding:.7rem 0;gap:1rem;}
+  .logo{display:flex;align-items:center;gap:.65rem;}
+  .logo-img{height:42px;width:42px;object-fit:cover;border-radius:50%;flex:none;}
+  .logo-text{display:flex;flex-direction:column;line-height:1.1;}
+  .logo-text b{font-family:'Fraunces',serif;font-size:clamp(1rem,2vw,1.2rem);color:#0e2a29;font-weight:600;}
+  .logo-text span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#3e5450;margin-top:.15rem;}
+  .nav-links{display:flex;align-items:center;gap:1.8rem;}
+  .nav-links a{position:relative;color:#20423d;font-size:.85rem;font-weight:600;padding:.3rem 0;}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:2px;background:#27A4A2;transition:width .3s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex;align-items:center;gap:.9rem;}
+  .nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(14,42,41,.15);border-radius:50%;color:#0e2a29;background:none;cursor:pointer;padding:0;flex:none;}
+  .nav-backdrop{display:none;position:fixed;inset:82px 0 0 0;background:rgba(14,42,41,.28);z-index:55;}
+  .nav-backdrop.is-open{display:block;}
+  @media (max-width:900px){
+    .nav-links{position:fixed;top:82px;left:0;right:0;z-index:56;flex-direction:column;align-items:flex-start;gap:0;background:#fafaf8;border-bottom:1px solid rgba(14,42,41,.08);padding:.5rem 1.25rem 1.25rem;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .25s ease,opacity .25s ease;}
+    .nav-links.is-open{transform:translateY(0);opacity:1;pointer-events:auto;}
+    .nav-links a{width:100%;padding:.9rem 0;border-bottom:1px solid rgba(14,42,41,.06);}
+    .nav-toggle{display:flex;}
+  }
+  .icon-close{display:none;}
+  .nav-toggle[aria-expanded="true"] .icon-open{display:none;}
+  .nav-toggle[aria-expanded="true"] .icon-close{display:block;}
+  @media (max-width:560px){
+    .nav-cta .btn-accent{display:none;}
+  }
+
+  /* ---- hero ---- */
+  .hero{background:#0e2a29;color:#fafaf8;padding:5.5rem 0 4rem;overflow:hidden;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.75rem;}}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:#27A4A2;margin-bottom:1.4rem;font-weight:700;}
+  .hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.1rem);line-height:1.15;margin:0 0 1.4rem;font-weight:600;}
+  .hero h1 em{color:#27A4A2;font-style:normal;}
+  .hero p.lead{font-size:1.05rem;line-height:1.75;color:rgba(250,250,248,.85);max-width:520px;margin:0 0 2.1rem;}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+  .ph{position:relative;border-radius:14px;background:linear-gradient(155deg,rgba(255,255,255,.09),rgba(255,255,255,.015));border:1px dashed rgba(250,250,248,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;color:rgba(250,250,248,.6);text-align:center;padding:2.5rem;}
+  .ph-light{background:linear-gradient(155deg,rgba(14,42,41,.05),rgba(14,42,41,.02));border:1px dashed rgba(14,42,41,.18);color:#3e5450;}
+  .ph svg{opacity:.75;}
+  .ph-label{font-size:.78rem;letter-spacing:.01em;line-height:1.5;max-width:240px;}
+  .hero .ph{aspect-ratio:4/5;}
+
+  /* ---- sections ---- */
+  .section{padding:6rem 0;}
+  .section-tight{padding:4.5rem 0;}
+  @media (max-width:640px){.section{padding:3.75rem 0;}.section-tight{padding:3rem 0;}}
+  .section-head{max-width:640px;margin:0 0 3rem;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head .eyebrow{color:#0e2a29;opacity:.85;}
+  .section-head h2{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.25rem);line-height:1.22;margin:0;font-weight:600;color:#15201f;}
+  .section-head p{margin:.9rem 0 0;color:#3e5450;line-height:1.7;font-size:1rem;}
+  .bg-alt{background:#f0f3f1;}
+
+  /* ---- servicios ---- */
+  .spec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.75rem;}
+  @media (max-width:640px){.spec-grid{grid-template-columns:1fr;}}
+  .spec-card{background:#fff;border:1px solid rgba(14,42,41,.08);border-radius:14px;padding:2.2rem 1.85rem;transition:transform .3s ease,box-shadow .3s ease;}
+  .spec-card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -26px rgba(14,42,41,.35);}
+  .spec-icon{width:50px;height:50px;border-radius:12px;background:rgba(39,164,162,.14);display:flex;align-items:center;justify-content:center;color:#0e2a29;margin-bottom:1.3rem;}
+  .spec-card h3{font-size:1.08rem;margin:0 0 .6rem;font-weight:700;color:#15201f;}
+  .spec-card p{margin:0;font-size:.92rem;line-height:1.65;color:#3e5450;}
+  .spec-card.unconfirmed{border-style:dashed;border-color:rgba(14,42,41,.28);background:rgba(255,255,255,.55);}
+  .unconfirmed-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b4f1c;background:rgba(184,134,11,.14);padding:.3rem .65rem;border-radius:999px;margin-bottom:.9rem;}
+
+  /* ---- por que integraxis ---- */
+  .why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.75rem;}
+  @media (max-width:640px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{display:flex;gap:1.1rem;align-items:flex-start;padding:0;}
+  .why-icon{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(39,164,162,.14);display:flex;align-items:center;justify-content:center;color:#0e2a29;}
+  .why-card h3{font-size:1rem;margin:0 0 .4rem;font-weight:700;color:#15201f;}
+  .why-card p{margin:0;font-size:.92rem;line-height:1.65;color:#3e5450;}
+
+  /* ---- proceso ---- */
+  .steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.85rem;counter-reset:step;}
+  @media (max-width:820px){.steps-grid{grid-template-columns:1fr;}}
+  .step-card{background:#fff;border:1px solid rgba(14,42,41,.08);border-radius:14px;padding:2.2rem 1.85rem;position:relative;}
+  .step-num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:#27A4A2;margin-bottom:.9rem;}
+  .step-card h3{font-size:1.05rem;margin:0 0 .6rem;font-weight:700;color:#15201f;}
+  .step-card p{margin:0;font-size:.92rem;line-height:1.65;color:#3e5450;}
+
+  /* ---- contacto ---- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+  @media (max-width:820px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-info{display:flex;flex-direction:column;gap:1.5rem;}
+  .contact-row{display:flex;gap:1rem;align-items:flex-start;}
+  .contact-row svg{flex:none;color:#27A4A2;margin-top:.15rem;}
+  .contact-row b{display:block;font-size:.95rem;color:#15201f;margin-bottom:.2rem;}
+  .contact-row span{font-size:.9rem;color:#3e5450;line-height:1.6;}
+  .contact-actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-top:.5rem;}
+
+  /* ---- footer ---- */
+  footer{background:#0e2a29;color:rgba(250,250,248,.72);padding:4rem 0 0;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(250,250,248,.1);}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;gap:2.25rem;}}
+  .foot-grid h3{color:#fafaf8;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 1.1rem;font-weight:700;}
+  .foot-grid a{display:block;color:rgba(250,250,248,.68);font-size:.92rem;padding:.3rem 0;}
+  .foot-grid a:hover{color:#27A4A2;}
+  .foot-logo b{font-family:'Fraunces',serif;font-size:1.15rem;color:#fafaf8;font-weight:600;}
+  .foot-logo p{font-size:.88rem;line-height:1.7;color:rgba(250,250,248,.6);max-width:320px;margin:.9rem 0 1.5rem;}
+  .soc-row{display:flex;gap:.75rem;}
+  .soc-row a{width:40px;height:40px;border:1px solid rgba(250,250,248,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0;padding:0;}
+  .soc-row a:hover{border-color:#27A4A2;}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding:1.6rem 0 5.5rem;font-size:.78rem;color:rgba(250,250,248,.5);}
+  @media (min-width:641px){.foot-bottom{padding-bottom:1.6rem;}}
+  .foot-bottom a{display:inline;padding:0;color:rgba(250,250,248,.5);}
+  .foot-bottom a:hover{color:#27A4A2;}
+
+  /* ---- floating whatsapp ---- */
+  .wa-float{position:fixed;right:1.6rem;bottom:1.6rem;z-index:70;width:58px;height:58px;border-radius:50%;background:#27A4A2;color:#06201f;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(14,42,41,.45);transition:transform .3s ease;}
+  .wa-float:hover{transform:scale(1.08);}
+  @media (max-width:640px){.wa-float{width:52px;height:52px;right:1.1rem;bottom:1.1rem;}}
+
+  /* ---- entrance motion ---- */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .rise{animation:fadeUp .7s ease-out both;}
+  .rise-1{animation-delay:.05s;}
+  .rise-2{animation-delay:.16s;}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#" aria-label="Integraxis Consulting — inicio">
+        <img class="logo-img" src="assets/logo.jpg" alt="Integraxis Consulting">
+        <span class="logo-text"><b>Integraxis</b><span>García Consulting Group</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#por-que">Por qué Integraxis</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-accent" href="https://wa.me/18295705631?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Integraxis%20Consulting." target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".18"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+          Escribir a WhatsApp
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+          <svg class="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg class="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="rise rise-1">
+        <div class="eyebrow">Consultoría fiscal y contable</div>
+        <h1>Tu contabilidad y tus impuestos, <em>en orden y sin sorpresas.</em></h1>
+        <p class="lead">Integraxis Consulting acompaña a personas y empresas de San Pedro de Macorís en su declaración de impuestos y auditoría fiscal, con atención directa del director y explicaciones claras — sin letra pequeña.</p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href="https://wa.me/18295705631?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Integraxis%20Consulting." target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".18"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+            Agendar consulta por WhatsApp
+          </a>
+          <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+      <div class="rise rise-2">
+        <div class="ph">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+          <div class="ph-label">Foto de Carlos Ramos García o del equipo Integraxis — pendiente de recibir</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSERT: SERVICIOS -->
+
+  <!-- INSERT: POR-QUE-Y-PROCESO -->
+
+  <!-- INSERT: CONTACTO -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-logo">
+          <b>Integraxis Consulting</b>
+          <p>Consultoría fiscal y contable en San Pedro de Macorís, República Dominicana. Atención directa por WhatsApp.</p>
+          <div class="soc-row">
+            <a href="https://www.instagram.com/integraxis.consulting/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="https://wa.me/18295705631" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h3>Navegación</h3>
+          <a href="#servicios">Servicios</a>
+          <a href="#por-que">Por qué Integraxis</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <a href="https://wa.me/18295705631" target="_blank" rel="noopener">+1 829 570 5631</a>
+          <a href="https://www.instagram.com/integraxis.consulting/" target="_blank" rel="noopener">@integraxis.consulting</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Integraxis Consulting / García Consulting Group. Todos los derechos reservados.</span>
+        <span>Sitio desarrollado por <a href="https://www.webdom.tech" target="_blank" rel="noopener">WebDom</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/18295705631?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Integraxis%20Consulting." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z" opacity=".2"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.37-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.53-.87-2.09-.23-.55-.46-.48-.63-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-1 2.42 0 1.43 1.03 2.82 1.17 3.01.14.19 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.32.19 1.81.11.55-.08 1.65-.68 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.25-.19-.53-.33z"/></svg>
+  </a>
+
+  <script>
+    (function(){
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      var backdrop = document.getElementById('navBackdrop');
+
+      function closeMenu(){
+        links.classList.remove('is-open');
+        backdrop.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded','false');
+      }
+      function openMenu(){
+        links.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        toggle.setAttribute('aria-expanded','true');
+      }
+      toggle.addEventListener('click', function(){
+        var isOpen = links.classList.contains('is-open');
+        if (isOpen) { closeMenu(); } else { openMenu(); }
+      });
+      backdrop.addEventListener('click', closeMenu);
+      links.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', closeMenu);
+      });
+    })();
+  </script>
+
+</body>
+</html>

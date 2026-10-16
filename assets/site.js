@@ -3,7 +3,7 @@
   var doc=document.documentElement;
   doc.classList.add("js");
   var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var WA="https://wa.me/18299782833?text=";
+  var WA="https://wa.me/18494495834?text=";
   var PLANS={
     basico:{name:"Básico",cuota:5500,cuotas:16500,unico:15000},
     estandar:{name:"Estándar",cuota:8800,cuotas:26400,unico:24000},
@@ -299,7 +299,7 @@
   /* Copiar número */
   var copyBtn=document.getElementById("copyPhone");
   if(copyBtn)copyBtn.addEventListener("click",function(){
-    var num="+18299782833",label=copyBtn.querySelector("span");
+    var num="+18494495834",label=copyBtn.querySelector("span");
     function done(t){label.textContent=t;copyBtn.classList.add("is-success");setTimeout(function(){label.textContent="Copiar número";copyBtn.classList.remove("is-success");},2000);}
     function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById("phone"));var s=window.getSelection();s.removeAllRanges();s.addRange(r);done("Número seleccionado");}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(num).then(function(){done("Copiado");},fallback);}else{fallback();}
